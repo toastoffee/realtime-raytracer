@@ -37,6 +37,8 @@ add_executable(realtime_raytracer main.cpp
                 src/wnd/imgui_pixel_renderer.h
                 src/wnd/file_helper.cpp
                 src/wnd/file_helper.h
+                src/math/vec3.cpp
+                src/math/vec3.hpp
 )
 
 target_link_libraries(
