@@ -12,6 +12,7 @@
 
 #include "vec3.hpp"
 
+#include <cmath>
 
 Vec3::Vec3() : m_e{0, 0, 0} { }
 
@@ -75,19 +76,21 @@ Vec3 &Vec3::operator*=(const double t) {
 }
 
 double Vec3::magnitude() const {
-    return 0;
+    return std::sqrt(sqrMagnitude());
 }
 
 double Vec3::sqrMagnitude() const {
-    return 0;
+    return m_e[0]*m_e[0] + m_e[1]*m_e[1] + m_e[2]*m_e[2];
 }
 
 Vec3 Vec3::normalized() const {
-    return Vec3();
+    double m = magnitude();
+    return {m_e[0] / m, m_e[1] / m, m_e[2] / m};
 }
 
 void Vec3::Normalize() {
-
+    double m = magnitude();
+    *this /= m;
 }
 
 double Vec3::Dot(const Vec3 &lhs, const Vec3 &rhs) {
@@ -95,7 +98,7 @@ double Vec3::Dot(const Vec3 &lhs, const Vec3 &rhs) {
 }
 
 double Vec3::Distance(const Vec3 &lhs, const Vec3 &rhs) {
-    return 0;
+    return (lhs-rhs).magnitude();
 }
 
 Vec3 Vec3::Cross(const Vec3 &lhs, const Vec3 &rhs) {
@@ -103,7 +106,7 @@ Vec3 Vec3::Cross(const Vec3 &lhs, const Vec3 &rhs) {
 }
 
 std::ostream &operator<<(std::ostream &o, const Vec3 &v) {
-    return <#initializer#>;
+    return  ;
 }
 
 Vec3 operator+(const Vec3 &lhs, const Vec3 &rhs) {
