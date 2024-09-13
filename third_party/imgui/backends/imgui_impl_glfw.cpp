@@ -68,9 +68,9 @@
 //  2017-08-25: Inputs: MousePos set to -FLT_MAX,-FLT_MAX when mouse is unavailable/missing (instead of -1,-1).
 //  2016-10-15: Misc: Added a void* user_data parameter to Clipboard function handlers.
 
-#include <imgui/imgui.h>
+#include "../imgui.h"
 #ifndef IMGUI_DISABLE
-#include <imgui/backends/imgui_impl_glfw.h>
+#include "imgui_impl_glfw.h"
 
 // Clang warnings with -Weverything
 #if defined(__clang__)
@@ -80,7 +80,7 @@
 #endif
 
 // GLFW
-#include <GLFW/glfw3.h>
+#include "GLFW/glfw3.h"
 
 #ifdef _WIN32
 #undef APIENTRY
@@ -89,7 +89,7 @@
 #endif
 #ifdef __APPLE__
 #define GLFW_EXPOSE_NATIVE_COCOA
-#include <GLFW/glfw3native.h>   // for glfwGetCocoaWindow()
+#include "GLFW/glfw3native.h"   // for glfwGetCocoaWindow()
 #endif
 
 #ifdef __EMSCRIPTEN__
