@@ -39,6 +39,8 @@ add_executable(realtime_raytracer main.cpp
                 src/wnd/file_helper.h
                 src/math/vec3.cpp
                 src/math/vec3.hpp
+        src/math/ray.cpp
+        src/math/ray.hpp
 )
 
 target_link_libraries(
