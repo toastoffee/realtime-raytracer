@@ -94,7 +94,9 @@ void Vec3::Normalize() {
 }
 
 double Vec3::Dot(const Vec3 &lhs, const Vec3 &rhs) {
-    return 0;
+    return lhs.m_e[0] * rhs.m_e[0]
+        +  lhs.m_e[1] * rhs.m_e[1]
+        +  lhs.m_e[2] * rhs.m_e[2];
 }
 
 double Vec3::Distance(const Vec3 &lhs, const Vec3 &rhs) {
@@ -102,11 +104,15 @@ double Vec3::Distance(const Vec3 &lhs, const Vec3 &rhs) {
 }
 
 Vec3 Vec3::Cross(const Vec3 &lhs, const Vec3 &rhs) {
-    return Vec3();
+    return {
+        lhs.m_e[1] * rhs.m_e[2] - lhs.m_e[2] * rhs.m_e[1],
+        lhs.m_e[2] * rhs.m_e[0] - lhs.m_e[0] * rhs.m_e[2],
+        lhs.m_e[0] * rhs.m_e[1] - lhs.m_e[1] * rhs.m_e[0]
+    };
 }
 
 std::ostream &operator<<(std::ostream &o, const Vec3 &v) {
-    return  ;
+    return  o << v.x() << ' ' << v.y() << ' ' << v.z();
 }
 
 Vec3 operator+(const Vec3 &lhs, const Vec3 &rhs) {
