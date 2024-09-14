@@ -37,6 +37,8 @@ add_executable(realtime_raytracer main.cpp
         src/render_window.hpp
         src/color.cpp
         src/color.hpp
+        src/canvas.cpp
+        src/canvas.hpp
 )
 
 target_link_libraries(${PROJECT_NAME} glfw)

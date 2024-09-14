@@ -23,6 +23,7 @@ private:
     static unsigned char convertTo8(double x);
 
 public:
+    Color();
     Color(double r, double g, double b, double a);
 
     double r() const;

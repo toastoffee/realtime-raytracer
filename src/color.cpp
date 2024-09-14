@@ -13,6 +13,9 @@
 
 #include "color.hpp"
 
+Color::Color() :
+m_r(0), m_g(0), m_b(0), m_a(1) {}
+
 Color::Color(double r, double g, double b, double a) :
 m_r(r), m_g(g), m_b(b), m_a(a) {}
 
@@ -86,6 +89,7 @@ void Color::SetA(double a) {
 Color Color::gamma() const {
     return {linearToGamma(m_r), linearToGamma(m_g), linearToGamma(m_b), m_a};
 }
+
 
 
 
