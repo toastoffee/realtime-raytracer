@@ -12,7 +12,6 @@
 #include <glad/glad.h>
 #include <stbi/stb_image.h>
 
-
 #include "imgui_pixel_renderer.h"
 #include "file_helper.h"
 
