@@ -40,10 +40,10 @@ public:
     static Vec3 forward();
     /** @brief shorthand for writing Vector3(0, 0, -1) */
     static Vec3 back();
+
     double x() const;
     double y() const;
     double z() const;
-
 
     Vec3 operator-() const;
     double operator[](int i) const;
@@ -51,8 +51,8 @@ public:
 
     Vec3& operator+=(const Vec3 &v);
     Vec3& operator-=(const Vec3 &v);
-    Vec3& operator/=(const double t);
-    Vec3& operator*=(const double t);
+    Vec3& operator/=(double t);
+    Vec3& operator*=(double t);
 
     double magnitude() const;
     double sqrMagnitude() const;
