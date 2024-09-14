@@ -60,5 +60,9 @@ void Canvas::UpdateTex() {
 }
 
 void Canvas::Render() const {
-    ImGui::Image((void*)(intptr_t)m_tex, ImVec2((int)m_width, (int)m_height));
+    ImGui::Begin("Canvas");
+    float canvasWidth = ImGui::GetWindowSize().x;
+    float hwRatio = (float)m_height / (float)m_width;
+    ImGui::Image((void*)(intptr_t)m_tex, ImVec2(canvasWidth, canvasWidth * hwRatio));
+    ImGui::End();
 }
