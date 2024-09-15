@@ -5,6 +5,7 @@ int main() {
 
     RenderWindow window(1280, 720);
 
+    
     int width = 256;
     int height = 256;
     Canvas canvas(width, height);
