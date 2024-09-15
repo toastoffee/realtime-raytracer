@@ -1,6 +1,6 @@
 /**
   ******************************************************************************
-  * @file           : camera.cpp
+  * @file           : math_tool.hpp
   * @author         : toastoffee
   * @brief          : None
   * @attention      : None
@@ -10,14 +10,15 @@
 
 
 
-#include "camera.hpp"
+#ifndef REALTIME_RAYTRACER_MATH_TOOL_HPP
+#define REALTIME_RAYTRACER_MATH_TOOL_HPP
+
+const double PI = 3.1415926535897932385;
+
+class MathTool {
+public:
+    static double Deg2Rad(double degrees);
+};
 
 
-
-Camera::Camera(const Vec3 &pos, double aspectRatio, double fov)
- : m_pos(pos), m_aspectRatio(aspectRatio), m_fov(fov) {
-    m_right = Vec3::right();
-    m_front = Vec3::forward();
-
-
-}
+#endif //REALTIME_RAYTRACER_MATH_TOOL_HPP

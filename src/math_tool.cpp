@@ -1,6 +1,6 @@
 /**
   ******************************************************************************
-  * @file           : camera.cpp
+  * @file           : math_tool.cpp
   * @author         : toastoffee
   * @brief          : None
   * @attention      : None
@@ -10,14 +10,8 @@
 
 
 
-#include "camera.hpp"
+#include "math_tool.hpp"
 
-
-
-Camera::Camera(const Vec3 &pos, double aspectRatio, double fov)
- : m_pos(pos), m_aspectRatio(aspectRatio), m_fov(fov) {
-    m_right = Vec3::right();
-    m_front = Vec3::forward();
-
-
+double MathTool::Deg2Rad(double degrees) {
+    return degrees * PI / 180.0f;
 }
