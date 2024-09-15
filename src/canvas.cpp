@@ -61,6 +61,7 @@ void Canvas::UpdateTex() {
 
 void Canvas::Render() const {
     ImGui::Begin("Canvas");
+    ImGui::Text("Avg fps: %.3f", ImGui::GetIO().Framerate);
     float canvasWidth = ImGui::GetWindowSize().x;
     float hwRatio = (float)m_height / (float)m_width;
     ImGui::Image((void*)(intptr_t)m_tex, ImVec2(canvasWidth, canvasWidth * hwRatio));
