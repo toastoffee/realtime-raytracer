@@ -17,17 +17,14 @@
 
 class Canvas {
 private:
-    Color *m_pixels;
-    unsigned char *m_texData;
     int m_width, m_height;
     unsigned int m_tex;
 
 public:
-    Canvas(int width, int height);
+    Canvas();
     ~Canvas();
 
-    void WriteInPixel(const Color &color, int x, int y);
-    void UpdateTex();
+    void UpdateTex(unsigned char* pixels, int w, int h);
 
     void Render() const;
 };

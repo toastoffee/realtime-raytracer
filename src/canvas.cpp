@@ -14,34 +14,11 @@
 
 #include "canvas.hpp"
 
-Canvas::Canvas(int width, int height)
-: m_width(width), m_height(height) {
-    m_pixels = new Color[width * height];
-    m_texData = new unsigned char[width * height * 4];
-    m_tex = 0;
-}
+Canvas::Canvas() : m_width(0), m_height(0), m_tex(0) { }
 
-Canvas::~Canvas() {
-    delete[] m_pixels;
-}
+Canvas::~Canvas() = default;
 
-void Canvas::WriteInPixel(const Color &color, int x, int y) {
-    m_pixels[x + y * m_width] = color;
-}
-
-void Canvas::UpdateTex() {
-
-    // Load pixel data to tex data
-    for (int i = 0; i < m_width; ++i) {
-        for (int j = 0; j < m_height; ++j) {
-            int idx = i + j * m_width;
-
-            m_texData[idx * 4 + 0] = m_pixels[idx].r8();
-            m_texData[idx * 4 + 1] = m_pixels[idx].g8();
-            m_texData[idx * 4 + 2] = m_pixels[idx].b8();
-            m_texData[idx * 4 + 3] = m_pixels[idx].a8();
-        }
-    }
+void Canvas::UpdateTex(unsigned char* pixels, int w, int h) {
 
     // Create a OpenGL texture identifier
     glGenTextures(1, &m_tex);
@@ -53,10 +30,8 @@ void Canvas::UpdateTex() {
 
     // Upload pixels into texture
     glPixelStorei(GL_UNPACK_ROW_LENGTH, 0);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_width, m_height,
-                 0, GL_RGBA, GL_UNSIGNED_BYTE, m_texData);
-
-
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h,
+                 0, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
 }
 
 void Canvas::Render() const {
@@ -67,3 +42,5 @@ void Canvas::Render() const {
     ImGui::Image((void*)(intptr_t)m_tex, ImVec2(canvasWidth, canvasWidth * hwRatio));
     ImGui::End();
 }
+
+
