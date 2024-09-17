@@ -14,7 +14,7 @@
 #include "math_tool.hpp"
 
 
-Camera::Camera(const Vec3 &pos, double aspectRatio, double fov, int renderHeight)
+Camera::Camera(const Vec3& pos, double fov, double aspectRatio, int renderHeight)
  : m_pos(pos), m_aspectRatio(aspectRatio), m_fov(fov) {
 
     m_right = Vec3::right();
@@ -63,4 +63,29 @@ Color *Camera::Render(int &w, int &h) {
         }
     }
     return data;
+}
+
+Camera::Camera(const Vec3 &pos, double fov, int renderHeight, int renderWidth)
+ : m_pos(pos), m_fov(fov), m_renderHeight(renderHeight), m_renderWidth(renderWidth) {
+    m_aspectRatio = (double)m_renderWidth / m_renderHeight;
+
+    updateConfig();
+}
+
+void Camera::updateConfig() {
+    m_right = Vec3::right();
+    m_up = Vec3::up();
+    m_forward = Vec3::forward();
+
+    double viewportDist = 1.0f;
+    double viewportHeight = 2.f * MathTool::tan(MathTool::Deg2Rad(m_fov/2)) * viewportDist;
+    double viewportWidth = viewportHeight * m_aspectRatio;
+
+    m_viewportUp = m_up * viewportHeight;
+    m_viewportRight = m_right * viewportWidth;
+
+    m_vp_leftBottom = m_pos
+                      + m_forward * viewportDist
+                      - m_viewportUp / 2
+                      - m_viewportRight / 2;
 }

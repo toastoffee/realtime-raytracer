@@ -19,21 +19,23 @@
 
 class Camera {
 private:
+    /*! user set params */
     Vec3 m_pos;
-    Vec3 m_right, m_up, m_forward;
-    int m_renderWidth, m_renderHeight;
-
-    double m_aspectRatio;   // width / height
     double m_fov;   // vertical view range
+    int m_renderWidth, m_renderHeight;
+    double m_aspectRatio;   // width / height
 
+    /*! calc params */
+    Vec3 m_right, m_up, m_forward;
     Vec3 m_vp_leftBottom;
     Vec3 m_viewportUp, m_viewportRight;
 
 private:
+    void updateConfig();
     Ray getRay(double x, double y);
 
 public:
-    Camera(const Vec3& pos, double aspectRatio, double fov, int renderHeight);     // create a front-warded camera
+    Camera(const Vec3& pos, double fov, int renderHeight, int renderWidth);
 
     Color *Render(int &w, int &h);
 };
