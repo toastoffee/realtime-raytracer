@@ -13,7 +13,7 @@
 #include "path_tracer.hpp"
 
 PathTracer::PathTracer() :
-    m_cam(Vec3::zero(), 90.f, 1600, 900),
+    m_cam(Vec3::zero(), 90.f, 90, 160),
     m_window(1280, 720),
     m_resolutionMaxX(2048), m_resolutionMaxY(2048) {
 
@@ -32,6 +32,7 @@ void PathTracer::MainLoop() {
 
         m_mainCanvas.UpdateTex(m_renderData, w, h);
         m_mainCanvas.Render();
+
         m_window.EndWindow();
     }
 }

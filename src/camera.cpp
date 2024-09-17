@@ -56,17 +56,19 @@ void Camera::RenderTo(unsigned char *buf, int &w, int &h) {
     w = m_renderWidth;
     h = m_renderHeight;
 
-    for (int i = 0; i < w; ++i) {
-        for (int j = 0; j < h; ++j) {
-            int idx = i + j * w;
-            Ray ray = getRay(i, j);
+    for (int y = 0; y < h; ++y) {
+        for (int x = 0; x < w; ++x) {
+            int idx = y * w + x;
+            Ray ray = getRay(x, y);
             Vec3 dir = ray.direction();
             Color color(dir.x(), dir.y(), dir.z(), 1.0f);
 
-            buf[idx + 0] = color.r8();
-            buf[idx + 1] = color.g8();
-            buf[idx + 2] = color.b8();
-            buf[idx + 4] = color.a8();
+            buf[idx*4 + 0] = color.r8();
+            buf[idx*4 + 1] = color.g8();
+            buf[idx*4 + 2] = color.b8();
+            buf[idx*4 + 3] = color.a8();
+
         }
     }
+
 }

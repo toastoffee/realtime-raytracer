@@ -20,6 +20,9 @@ Canvas::~Canvas() = default;
 
 void Canvas::UpdateTex(unsigned char* pixels, int w, int h) {
 
+    m_width = w;
+    m_height = h;
+
     // Create a OpenGL texture identifier
     glGenTextures(1, &m_tex);
     glBindTexture(GL_TEXTURE_2D, m_tex);
