@@ -89,3 +89,20 @@ void Camera::updateConfig() {
                       - m_viewportUp / 2
                       - m_viewportRight / 2;
 }
+
+void Camera::RenderTo(unsigned char *buf, int &w, int &h) {
+    updateConfig();
+
+    w = m_renderWidth;
+    h = m_renderHeight;
+
+    auto *data = new Color[w * h];
+    for (int i = 0; i < w; ++i) {
+        for (int j = 0; j < h; ++j) {
+            int idx = i + j * w;
+            Ray ray = getRay(i, j);
+            Vec3 dir = ray.direction();
+            data[idx] = Color(dir.x(), dir.y(), dir.z(), 1.0f);
+        }
+    }
+}
