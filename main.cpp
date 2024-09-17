@@ -2,7 +2,6 @@
 
 int main() {
 
-
     std::unique_ptr<PathTracer> app(new PathTracer());
 
     app->MainLoop();

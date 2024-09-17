@@ -18,6 +18,10 @@ PathTracer::PathTracer() :
     m_resolutionMaxX(2048), m_resolutionMaxY(2048) {
 
     m_renderData = new unsigned char[m_resolutionMaxX * m_resolutionMaxY * 4];
+
+    m_camFov = (float)m_cam.m_fov;
+    m_resolutionX = m_cam.m_renderWidth;
+    m_resolutionY = m_cam.m_renderHeight;
 }
 
 PathTracer::~PathTracer() {
@@ -33,7 +37,25 @@ void PathTracer::MainLoop() {
         m_mainCanvas.UpdateTex(m_renderData, w, h);
         m_mainCanvas.Render();
 
+        renderCameraProps();
+
         m_window.EndWindow();
     }
+}
+
+void PathTracer::renderCameraProps() {
+
+    ImGui::Begin("camera ");
+
+    ImGui::SliderFloat("fov", &m_camFov, 0.0f, 180.0f);
+    m_cam.m_fov = (double)m_camFov;
+
+    ImGui::SliderInt("resolution x", &m_resolutionX, 1, m_resolutionMaxX);
+    m_cam.m_renderWidth = m_resolutionX;
+
+    ImGui::SliderInt("resolution y", &m_resolutionY, 1, m_resolutionMaxY);
+    m_cam.m_renderHeight = m_resolutionY;
+
+    ImGui::End();
 }
 

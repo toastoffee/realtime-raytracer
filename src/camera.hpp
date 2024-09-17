@@ -18,14 +18,15 @@
 #include "color.hpp"
 
 class Camera {
-private:
+public:
     /*! user set params */
     Vec3 m_pos;
     double m_fov;   // vertical view range
     int m_renderWidth, m_renderHeight;
-    double m_aspectRatio;   // width / height
 
+private:
     /*! calc params */
+    double m_aspectRatio;   // width / height
     Vec3 m_right, m_up, m_forward;
     Vec3 m_vp_leftBottom;
     Vec3 m_viewportUp, m_viewportRight;

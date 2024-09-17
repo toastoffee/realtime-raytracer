@@ -26,6 +26,12 @@ private:
     int m_resolutionMaxX, m_resolutionMaxY;
     unsigned char *m_renderData;
 
+    float m_camFov;
+    int m_resolutionX, m_resolutionY;
+
+private:
+    void renderCameraProps();
+
 public:
     PathTracer();
     ~PathTracer();
