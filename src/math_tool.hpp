@@ -18,6 +18,11 @@ const double PI = 3.1415926535897932385;
 class MathTool {
 public:
     static double Deg2Rad(double degrees);
+    static double Rad2Deg(double radians);
+
+    static double tan(double radians);
+    static double sin(double radians);
+    static double cos(double radians);
 };
 
 
