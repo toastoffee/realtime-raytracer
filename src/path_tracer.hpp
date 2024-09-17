@@ -28,6 +28,7 @@ private:
 
 public:
     PathTracer();
+    ~PathTracer();
 
     void MainLoop();
 };

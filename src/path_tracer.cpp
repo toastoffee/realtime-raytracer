@@ -20,6 +20,10 @@ PathTracer::PathTracer() :
     m_renderData = new unsigned char[m_resolutionMaxX * m_resolutionMaxY * 4];
 }
 
+PathTracer::~PathTracer() {
+    delete[] m_renderData;
+}
+
 void PathTracer::MainLoop() {
     while(m_window.BeginWindow()) {
 
@@ -31,3 +35,4 @@ void PathTracer::MainLoop() {
         m_window.EndWindow();
     }
 }
+

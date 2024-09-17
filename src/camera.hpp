@@ -32,12 +32,12 @@ private:
 
 private:
     void updateConfig();
+
     Ray getRay(double x, double y);
 
 public:
     Camera(const Vec3& pos, double fov, int renderHeight, int renderWidth);
 
-    Color *Render(int &w, int &h);
     void RenderTo(unsigned char *buf, int &w, int &h);
 };
 
