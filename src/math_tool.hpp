@@ -23,6 +23,10 @@ public:
     static double tan(double radians);
     static double sin(double radians);
     static double cos(double radians);
+
+    static double sqrt(double v);
+
+    static bool SolveQuadratic(double a, double b, double c, double &x0, double &x1);
 };
 
 

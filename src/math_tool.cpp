@@ -32,3 +32,30 @@ double MathTool::sin(double radians) {
 double MathTool::cos(double radians) {
     return std::cos(radians);
 }
+
+double MathTool::sqrt(double v) {
+    return std::sqrt(v);
+}
+
+bool MathTool::SolveQuadratic(double a, double b, double c, double &x0, double &x1) {
+    double discriminant = b*b - 4*a*c;
+
+    if(discriminant < 0) {
+        return false;
+    }
+    else if(discriminant == 0) {
+        x0 = x1 = -0.5f * b / a;
+    }
+    else {
+        double sqrtDiscriminant = sqrt(discriminant);
+        x0 = -0.5f * ( b + sqrtDiscriminant ) / a;
+        x1 = -0.5f * ( b - sqrtDiscriminant ) / a;
+
+        if(x0 > x1) {
+            std::swap(x0, x1);
+        }
+    }
+    return true;
+}
+
+
