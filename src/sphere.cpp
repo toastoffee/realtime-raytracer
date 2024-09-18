@@ -1,19 +1,19 @@
 /**
   ******************************************************************************
-  * @file           : file_helper.h
+  * @file           : sphere.cpp
   * @author         : toastoffee
   * @brief          : None
   * @attention      : None
-  * @date           : 2024/8/22
+  * @date           : 2024/9/18
   ******************************************************************************
   */
 
 
 
-#ifndef INC_2D_PIXEL_RENDERER_FILE_HELPER_H
-#define INC_2D_PIXEL_RENDERER_FILE_HELPER_H
+#include "sphere.hpp"
 
-size_t LoadFile(const char* fileName, void* &data);
+Sphere::Sphere(const Vec3 &mCenter, double mRadius) : m_center(mCenter), m_radius(mRadius) {}
 
-
-#endif //INC_2D_PIXEL_RENDERER_FILE_HELPER_H
+bool Sphere::Raycast(Ray ray) {
+    return false;
+}
