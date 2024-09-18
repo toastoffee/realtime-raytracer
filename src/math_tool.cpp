@@ -37,6 +37,12 @@ double MathTool::sqrt(double v) {
     return std::sqrt(v);
 }
 
+void MathTool::Swap(double &l, double &r) {
+    double temp = l;
+    l = r;
+    r = temp;
+}
+
 bool MathTool::SolveQuadratic(double a, double b, double c, double &x0, double &x1) {
     double discriminant = b*b - 4*a*c;
 
@@ -52,10 +58,12 @@ bool MathTool::SolveQuadratic(double a, double b, double c, double &x0, double &
         x1 = -0.5f * ( b - sqrtDiscriminant ) / a;
 
         if(x0 > x1) {
-            std::swap(x0, x1);
+            // swap
+            Swap(x0, x1);
         }
     }
     return true;
 }
+
 
 

@@ -26,6 +26,8 @@ public:
 
     static double sqrt(double v);
 
+    static void Swap(double &l, double &r);
+
     static bool SolveQuadratic(double a, double b, double c, double &x0, double &x1);
 };
 
