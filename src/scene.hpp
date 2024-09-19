@@ -20,9 +20,11 @@ private:
     std::vector<std::unique_ptr<Object> > m_objects;
 
 public:
-    const std::vector<std::unique_ptr<Object>>& GetObjects() const { return m_objects; }
+    const std::vector<std::unique_ptr<Object>>& GetObjects() const;
 
-    void AddObject(std::unique_ptr<Object> object) { m_objects.push_back(std::move(object)); }
+    void AddObject(std::unique_ptr<Object> object);
+
+    bool RayCast(const Ray& ray, HitPayload &payload, double minRange, double maxRange);
 };
 
 

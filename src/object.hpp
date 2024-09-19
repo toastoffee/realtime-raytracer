@@ -23,6 +23,7 @@ class Object;
 class HitPayload {
 public:
     Vec3 p;
+    double t;
     Vec3 normal;
     bool hitFront;
     Object *hitObject;

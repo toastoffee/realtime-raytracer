@@ -37,8 +37,9 @@ bool Sphere::CheckHit(const Ray &ray, HitPayload &payload, double minRange, doub
         return false;
     }
 
-    Vec3 outwardNormal = (payload.p - m_center).normalized();
+    payload.t = t;
     payload.p = ray.GetPoint(t);
+    Vec3 outwardNormal = (payload.p - m_center).normalized();
     payload.SetNormalAndHitFront(ray, outwardNormal);
     payload.hitObject = this;
 

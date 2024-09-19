@@ -62,9 +62,15 @@ void Camera::RenderTo(Scene *scene, unsigned char *buf, int &w, int &h) {
             int idx = y * w + x;
             Ray ray = getRay(x, y);
             Vec3 dir = ray.direction();
-            Sphere sphere(Vec3::forward(), 0.5f);
 
+            HitPayload payload;
             Color color;
+
+            if(scene->RayCast(ray, payload, 0.0001f, 1000.f)) {
+                color = Color(payload.normal.x(), payload.normal.y(), payload.normal.z(), 1.f);
+            } else {
+                color = Color(dir.x(), dir.y(), dir.z(), 1.0f);
+            }
 
             buf[idx*4 + 0] = color.r8();
             buf[idx*4 + 1] = color.g8();
