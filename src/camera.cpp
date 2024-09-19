@@ -51,7 +51,7 @@ void Camera::updateConfig() {
                       - m_viewportRight / 2;
 }
 
-void Camera::RenderTo(unsigned char *buf, int &w, int &h) {
+void Camera::RenderTo(Scene *scene, unsigned char *buf, int &w, int &h) {
     updateConfig();
 
     w = m_renderWidth;
@@ -65,12 +65,6 @@ void Camera::RenderTo(unsigned char *buf, int &w, int &h) {
             Sphere sphere(Vec3::forward(), 0.5f);
 
             Color color;
-            if(sphere.CheckHit(ray)) {
-                color = sphere.Raycast(ray);
-            }
-            else{
-                color = Color(dir.x(), dir.y(), dir.z(), 1.0f);
-            }
 
             buf[idx*4 + 0] = color.r8();
             buf[idx*4 + 1] = color.g8();

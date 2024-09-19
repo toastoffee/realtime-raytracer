@@ -29,11 +29,13 @@ private:
     float m_camFov;
     int m_resolutionX, m_resolutionY;
 
+    Scene *m_scene = nullptr;
+
 private:
     void renderCameraProps();
 
 public:
-    PathTracer();
+    explicit PathTracer(Scene *scene);
     ~PathTracer();
 
     void MainLoop();

@@ -13,6 +13,8 @@
 #ifndef REALTIME_RAYTRACER_OBJECT_HPP
 #define REALTIME_RAYTRACER_OBJECT_HPP
 
+#include <vector>
+
 #include "vec3.hpp"
 #include "ray.hpp"
 

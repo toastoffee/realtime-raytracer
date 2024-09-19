@@ -16,6 +16,7 @@
 #include "vec3.hpp"
 #include "ray.hpp"
 #include "color.hpp"
+#include "scene.hpp"
 
 class Camera {
 public:
@@ -39,7 +40,7 @@ private:
 public:
     Camera(const Vec3& pos, double fov, int renderHeight, int renderWidth);
 
-    void RenderTo(unsigned char *buf, int &w, int &h);
+    void RenderTo(Scene *scene, unsigned char *buf, int &w, int &h);
 };
 
 

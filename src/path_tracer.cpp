@@ -12,7 +12,8 @@
 
 #include "path_tracer.hpp"
 
-PathTracer::PathTracer() :
+PathTracer::PathTracer(Scene *scene) :
+    m_scene(scene),
     m_cam(Vec3::zero(), 90.f, 360, 640),
     m_window(1280, 720),
     m_resolutionMaxX(2048), m_resolutionMaxY(2048) {
@@ -32,7 +33,7 @@ void PathTracer::MainLoop() {
     while(m_window.BeginWindow()) {
 
         int w, h;
-        m_cam.RenderTo(m_renderData, w, h);
+        m_cam.RenderTo(m_scene, m_renderData, w, h);
 
         m_mainCanvas.UpdateTex(m_renderData, w, h);
         m_mainCanvas.Render();
@@ -58,4 +59,5 @@ void PathTracer::renderCameraProps() {
 
     ImGui::End();
 }
+
 
