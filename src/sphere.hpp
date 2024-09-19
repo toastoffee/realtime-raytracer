@@ -15,6 +15,8 @@
 
 #include "vec3.hpp"
 #include "ray.hpp"
+#include "color.hpp"
+
 
 class Sphere {
 private:
@@ -24,7 +26,9 @@ private:
 public:
     Sphere(const Vec3 &mCenter, double mRadius);
 
-    bool Raycast(Ray ray);
+    bool CheckHit(Ray ray);
+
+    Color Raycast(Ray ray);
 };
 
 

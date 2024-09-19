@@ -12,6 +12,7 @@
 
 #include "camera.hpp"
 #include "math_tool.hpp"
+#include "sphere.hpp"
 
 Camera::Camera(const Vec3 &pos, double fov, int renderHeight, int renderWidth)
         : m_pos(pos), m_fov(fov), m_renderHeight(renderHeight), m_renderWidth(renderWidth) {
@@ -61,7 +62,15 @@ void Camera::RenderTo(unsigned char *buf, int &w, int &h) {
             int idx = y * w + x;
             Ray ray = getRay(x, y);
             Vec3 dir = ray.direction();
-            Color color(dir.x(), dir.y(), dir.z(), 1.0f);
+            Sphere sphere(Vec3::forward(), 0.5f);
+
+            Color color;
+            if(sphere.CheckHit(ray)) {
+                color = sphere.Raycast(ray);
+            }
+            else{
+                color = Color(dir.x(), dir.y(), dir.z(), 1.0f);
+            }
 
             buf[idx*4 + 0] = color.r8();
             buf[idx*4 + 1] = color.g8();
@@ -70,5 +79,4 @@ void Camera::RenderTo(unsigned char *buf, int &w, int &h) {
 
         }
     }
-
 }

@@ -13,7 +13,7 @@
 #include "path_tracer.hpp"
 
 PathTracer::PathTracer() :
-    m_cam(Vec3::zero(), 90.f, 90, 160),
+    m_cam(Vec3::zero(), 90.f, 360, 640),
     m_window(1280, 720),
     m_resolutionMaxX(2048), m_resolutionMaxY(2048) {
 
