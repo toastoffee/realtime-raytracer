@@ -23,7 +23,7 @@ public:
     Vec3 p;
     Vec3 normal;
     bool hitFront;
-    Object* hitObject = nullptr;
+    Object *hitObject;
 
     void SetNormalAndHitFront(const Ray& ray, const Vec3& outwardNormal);
 };
@@ -32,7 +32,7 @@ class Object {
 public:
     virtual ~Object() = default;
 
-    virtual bool CheckHit(const Ray& ray, HitPayload &payload, double minRange, double maxRange) const = 0;
+    virtual bool CheckHit(const Ray& ray, HitPayload &payload, double minRange, double maxRange) = 0;
 };
 
 

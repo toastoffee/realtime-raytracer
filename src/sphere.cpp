@@ -54,7 +54,7 @@ Color Sphere::Raycast(Ray ray) {
     }
 }
 
-bool Sphere::CheckHit(const Ray &ray, HitPayload &payload, double minRange, double maxRange) const {
+bool Sphere::CheckHit(const Ray &ray, HitPayload &payload, double minRange, double maxRange) {
 
     Vec3 oc = m_center - ray.origin();
     auto a = Vec3::Dot(ray.direction(), ray.direction());
@@ -67,10 +67,19 @@ bool Sphere::CheckHit(const Ray &ray, HitPayload &payload, double minRange, doub
         return false;
     }
 
+    double t;
     if(MathTool::isInInterval(t0, minRange, maxRange)) {
-        payload.p = ray.GetPoint(t0);
+        t = t0;
     } else if(MathTool::isInInterval(t1, minRange, maxRange)) {
-        payload.p = ray.GetPoint(t1);
+        t = t1;
+    } else {
+        return false;
     }
 
+    Vec3 outwardNormal = (payload.p - m_center).normalized();
+    payload.p = ray.GetPoint(t);
+    payload.SetNormalAndHitFront(ray, outwardNormal);
+    payload.hitObject = this;
+
+    return true;
 }

@@ -26,7 +26,7 @@ private:
 public:
     Sphere(const Vec3 &mCenter, double mRadius);
 
-    bool CheckHit(const Ray &ray, HitPayload &payload, double minRange, double maxRange) const override;
+    bool CheckHit(const Ray &ray, HitPayload &payload, double minRange, double maxRange) override;
 };
 
 
