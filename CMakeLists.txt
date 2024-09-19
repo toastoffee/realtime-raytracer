@@ -49,6 +49,7 @@ add_executable(realtime_raytracer main.cpp
         src/sphere.hpp
         src/object.cpp
         src/object.hpp
+        src/scene.hpp
 )
 
 target_link_libraries(${PROJECT_NAME} glfw)
