@@ -63,6 +63,8 @@ public:
     static double Dot(const Vec3 &lhs, const Vec3 &rhs);
     static double Distance(const Vec3 &lhs, const Vec3 &rhs);
     static Vec3 Cross(const Vec3 &lhs, const Vec3 &rhs);
+    static double Angle(const Vec3 &lhs, const Vec3 &rhs);
+
 //    static Vec3 Reflect(const Vec3 &inDir, const Vec3 &inNorm);
 };
 

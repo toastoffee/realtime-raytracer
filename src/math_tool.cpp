@@ -43,6 +43,10 @@ void MathTool::Swap(double &l, double &r) {
     r = temp;
 }
 
+bool MathTool::isInInterval(double v, double min, double max) {
+    return v >= min && v <= max;
+}
+
 bool MathTool::SolveQuadratic(double a, double b, double c, double &x0, double &x1) {
     double discriminant = b*b - 4*a*c;
 
@@ -64,6 +68,7 @@ bool MathTool::SolveQuadratic(double a, double b, double c, double &x0, double &
     }
     return true;
 }
+
 
 
 

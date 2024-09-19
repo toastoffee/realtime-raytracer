@@ -28,6 +28,8 @@ public:
 
     static void Swap(double &l, double &r);
 
+    static bool isInInterval(double v, double min, double max);
+
     static bool SolveQuadratic(double a, double b, double c, double &x0, double &x1);
 };
 

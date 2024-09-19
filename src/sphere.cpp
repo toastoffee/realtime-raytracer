@@ -53,3 +53,24 @@ Color Sphere::Raycast(Ray ray) {
         return {0.f, 0.f, 0.f, 1.f};
     }
 }
+
+bool Sphere::CheckHit(const Ray &ray, HitPayload &payload, double minRange, double maxRange) const {
+
+    Vec3 oc = m_center - ray.origin();
+    auto a = Vec3::Dot(ray.direction(), ray.direction());
+    auto b = -2.0f * Vec3::Dot(ray.direction(), oc);
+    auto c = Vec3::Dot(oc, oc) - m_radius * m_radius;
+
+    double t0, t1;
+    bool existSolution = MathTool::SolveQuadratic(a, b, c, t0, t1);
+    if(!existSolution) {
+        return false;
+    }
+
+    if(MathTool::isInInterval(t0, minRange, maxRange)) {
+        payload.p = ray.GetPoint(t0);
+    } else if(MathTool::isInInterval(t1, minRange, maxRange)) {
+        payload.p = ray.GetPoint(t1);
+    }
+
+}

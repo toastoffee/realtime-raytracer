@@ -111,6 +111,12 @@ Vec3 Vec3::Cross(const Vec3 &lhs, const Vec3 &rhs) {
     };
 }
 
+double Vec3::Angle(const Vec3 &lhs, const Vec3 &rhs) {
+    double cos_a = Vec3::Dot(lhs,rhs) / (lhs.magnitude() * rhs.magnitude());
+    double radians = std::acos(cos_a);
+    return radians;
+}
+
 std::ostream &operator<<(std::ostream &o, const Vec3 &v) {
     return  o << v.x() << ' ' << v.y() << ' ' << v.z();
 }

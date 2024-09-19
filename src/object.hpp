@@ -21,7 +21,11 @@ class Object;
 class HitPayload {
 public:
     Vec3 p;
+    Vec3 normal;
+    bool hitFront;
     Object* hitObject = nullptr;
+
+    void SetNormalAndHitFront(const Ray& ray, const Vec3& outwardNormal);
 };
 
 class Object {
