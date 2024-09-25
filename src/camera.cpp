@@ -41,7 +41,7 @@ void Camera::updateConfig() {
     m_forward = Vec3::forward();
 
     double viewportDist = 1.0f;
-    double viewportHeight = 2.f * MathTool::tan(MathTool::Deg2Rad(m_fov/2)) * viewportDist;
+    double viewportHeight = 2.f * MathTool::tan(MathTool::Deg2Rad(m_fov/2.0f)) * viewportDist;
     double viewportWidth = viewportHeight * m_aspectRatio;
 
     m_viewportUp = m_up * viewportHeight;

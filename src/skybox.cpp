@@ -49,66 +49,97 @@ Color SkyBox::Sample(const Vec3 &dir) {
     double quarter_pi = PI / 4.0f;
 
     // forward
-    if(Vec3::Angle(dir, Vec3::forward()) <= quarter_pi) {
-        double t = 1.0f / dir.z();
-        // point => (t * x, t * y, 1.0f)
-        // (-1, -1) ~ (1, 1) => (0, 0) ~ (1, 1)
-        // uv => ( (t*x+1)/2.0 , (t*y+1)/2.0 )
-        double u = (t * dir.x() + 1.0f) / 2.0f;
-        double v = (t * dir.y() + 1.0f) / 2.0f;
+    if(dir.z() > 0.0f) {
+        double t = 0.5f / dir.z();
+        double intersect_u = t * dir.x();
+        double intersect_v = t * dir.y();
 
-        return m_cubeMaps["front.jpg"]->Sample(u, v);
+        if(intersect_u >= -0.5f && intersect_u <= 0.5f
+            && intersect_v >= -0.5f && intersect_v <= 0.5f) {
+            double u = (intersect_u + 0.5f) / 1.0f;
+            double v = (intersect_v + 0.5f) / 1.0f;
+
+            return m_cubeMaps["front.jpg"]->Sample(u, v);
+        }
     }
+
     // back
-    else if(Vec3::Angle(dir, Vec3::back()) <= quarter_pi) {
-        double t = -1.0f / dir.z();
+    if(dir.z() <= 0.0f) {
+        double t = -0.5f / dir.z();
+        double intersect_u = t * dir.x();
+        double intersect_v = t * dir.y();
 
-        double u = (t * dir.x() + 1.0f) / 2.0f;
-        double v = (t * dir.y() + 1.0f) / 2.0f;
+        if(intersect_u >= -0.5f && intersect_u <= 0.5f
+           && intersect_v >= -0.5f && intersect_v <= 0.5f) {
+            double u = (intersect_u + 0.5f) / 1.0f;
+            double v = (intersect_v + 0.5f) / 1.0f;
 
-        return m_cubeMaps["back.jpg"]->Sample(u, v);
+            return m_cubeMaps["back.jpg"]->Sample(u, v);
+        }
     }
+
     // right
-    else if(Vec3::Angle(dir, Vec3::right()) <= quarter_pi) {
-        double t = 1.0f / dir.x();
+    if(dir.x() > 0.0f) {
+        double t = 0.5f / dir.x();
+        double intersect_u = t * dir.z();
+        double intersect_v = t * dir.y();
 
-        double u = (t * dir.y() + 1.0f) / 2.0f;
-        double v = (t * dir.z() + 1.0f) / 2.0f;
+        if(intersect_u >= -0.5f && intersect_u <= 0.5f
+           && intersect_v >= -0.5f && intersect_v <= 0.5f) {
+            double u = (intersect_u + 0.5f) / 1.0f;
+            double v = (intersect_v + 0.5f) / 1.0f;
 
-        return m_cubeMaps["right.jpg"]->Sample(u, v);
+            return m_cubeMaps["right.jpg"]->Sample(1.0f - u, v);
+        }
     }
-    // right
-    else if(Vec3::Angle(dir, Vec3::left()) <= quarter_pi) {
-        double t = -1.0f / dir.x();
 
-        double u = (t * dir.y() + 1.0f) / 2.0f;
-        double v = (t * dir.z() + 1.0f) / 2.0f;
+    // left
+    if(dir.x() <= 0.0f) {
+        double t = -0.5f / dir.x();
+        double intersect_u = t * dir.z();
+        double intersect_v = t * dir.y();
 
-        return m_cubeMaps["left.jpg"]->Sample(u, v);
+        if(intersect_u >= -0.5f && intersect_u <= 0.5f
+           && intersect_v >= -0.5f && intersect_v <= 0.5f) {
+            double u = (intersect_u + 0.5f) / 1.0f;
+            double v = (intersect_v + 0.5f) / 1.0f;
+
+            return m_cubeMaps["left.jpg"]->Sample(u, v);
+        }
     }
+
     // up
-    else if(Vec3::Angle(dir, Vec3::up()) <= quarter_pi) {
-        double t = 1.0f / dir.y();
+    if(dir.y() <= 0.0f) {
+        double t = 0.5f / dir.y();
+        double intersect_u = t * dir.x();
+        double intersect_v = t * dir.z();
 
-        double u = (t * dir.x() + 1.0f) / 2.0f;
-        double v = (t * dir.z() + 1.0f) / 2.0f;
+        if(intersect_u >= -0.5f && intersect_u <= 0.5f
+           && intersect_v >= -0.5f && intersect_v <= 0.5f) {
+            double u = (intersect_u + 0.5f) / 1.0f;
+            double v = (intersect_v + 0.5f) / 1.0f;
 
-        return m_cubeMaps["top.jpg"]->Sample(u, v);
-    }
-    // up
-    else if(Vec3::Angle(dir, Vec3::down()) <= quarter_pi) {
-        double t = -1.0f / dir.y();
-
-        double u = (t * dir.x() + 1.0f) / 2.0f;
-        double v = (t * dir.z() + 1.0f) / 2.0f;
-
-        return m_cubeMaps["bottom.jpg"]->Sample(u, v);
-    }
-    else {
-        // return Magenta
-        return {1.0f, 0.0f, 1.0f};
+            return m_cubeMaps["top.jpg"]->Sample(1.0f-u, 1.0f-v);
+        }
     }
 
+    // bottom
+    if(dir.y() > 0.0f) {
+        double t = -0.5f / dir.y();
+        double intersect_u = t * dir.x();
+        double intersect_v = t * dir.z();
+
+        if(intersect_u >= -0.5f && intersect_u <= 0.5f
+           && intersect_v >= -0.5f && intersect_v <= 0.5f) {
+            double u = (intersect_u + 0.5f) / 1.0f;
+            double v = (intersect_v + 0.5f) / 1.0f;
+
+            return m_cubeMaps["bottom.jpg"]->Sample(u, v);
+        }
+    }
+
+    // return Magenta
+    return {1.0f, 0.0f, 1.0f};
 }
 
 
