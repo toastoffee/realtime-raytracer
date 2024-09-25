@@ -17,6 +17,7 @@
 
 #include "vec3.hpp"
 #include "ray.hpp"
+#include "material.hpp"
 
 class Object;
 
@@ -32,6 +33,9 @@ public:
 };
 
 class Object {
+public:
+    std::shared_ptr<Material> mat;
+
 public:
     virtual ~Object() = default;
 

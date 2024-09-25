@@ -24,6 +24,7 @@ private:
 
 public:
     Color();
+    Color(double r, double g, double b);
     Color(double r, double g, double b, double a);
 
     double r() const;
@@ -42,7 +43,13 @@ public:
     void SetA(double a);
 
     Color gamma() const;
+
+    Color& operator*=(double t);
+    Color& operator*=(const Color &v);
 };
 
+Color operator*(const Color &lhs, const Color &rhs);
+Color operator*(double t, const Color &v);
+Color operator*(const Color &v, double t);
 
 #endif //REALTIME_RAYTRACER_COLOR_HPP

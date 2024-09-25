@@ -13,7 +13,10 @@
 #ifndef REALTIME_RAYTRACER_MATH_TOOL_HPP
 #define REALTIME_RAYTRACER_MATH_TOOL_HPP
 
+#include <limits>
+
 const double PI = 3.1415926535897932385;
+const double infinity =  std::numeric_limits<double>::infinity();
 
 class MathTool {
 public:

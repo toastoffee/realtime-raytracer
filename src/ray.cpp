@@ -15,6 +15,9 @@
 Ray::Ray(const Vec3 &origin, const Vec3 &dir)
 : m_origin(origin), m_dir(dir) { }
 
+Ray::Ray()
+: m_origin(), m_dir() { }
+
 Vec3 Ray::origin() const {
     return m_origin;
 }
@@ -26,3 +29,4 @@ Vec3 Ray::direction() const {
 Vec3 Ray::GetPoint(double t) const {
     return m_origin + t * m_dir;
 }
+

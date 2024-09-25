@@ -22,6 +22,7 @@ private:
 
 public:
     Ray(const Vec3 &origin, const Vec3 &dir);
+    Ray();
 
     Vec3 origin() const;
     Vec3 direction() const;

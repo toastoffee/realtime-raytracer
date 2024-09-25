@@ -66,7 +66,7 @@ void Camera::RenderTo(Scene *scene, unsigned char *buf, int &w, int &h) {
             HitPayload payload;
             Color color;
 
-            if(scene->RayCast(ray, payload, 0.0001f, 1000.f)) {
+            if(scene->RayCast(ray, payload, 0.001f, 1000.f)) {
                 color = Color(payload.normal.x(), payload.normal.y(), payload.normal.z(), 1.f);
             } else {
                 color = Color(dir.x(), dir.y(), dir.z(), 1.0f);
@@ -80,3 +80,22 @@ void Camera::RenderTo(Scene *scene, unsigned char *buf, int &w, int &h) {
         }
     }
 }
+
+Color Camera::RayColor(const Ray &ray, Scene *scene, int depth) {
+    HitPayload payload;
+
+    // if exceeded the ray bounce limit, then we assume that no more lights.
+    if(depth <= 0) {
+        return {0.f, 0.f, 0.f};
+    }
+
+    if(scene->RayCast(ray, payload, 0.001f, infinity)) {
+        Ray scattered;
+        Color attenuation;
+        if(payload.hitObject->mat->Scatter(ray, scattered, payload, attenuation)) {
+            return attenuation * RayColor(scattered, scene, depth-1);
+        }
+    }
+}
+
+

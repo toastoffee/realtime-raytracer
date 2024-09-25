@@ -16,6 +16,9 @@
 Color::Color() :
 m_r(0), m_g(0), m_b(0), m_a(1) {}
 
+Color::Color(double r, double g, double b) :
+m_r(r), m_g(g), m_b(b), m_a(1.0f) {}
+
 Color::Color(double r, double g, double b, double a) :
 m_r(r), m_g(g), m_b(b), m_a(a) {}
 
@@ -90,6 +93,33 @@ Color Color::gamma() const {
     return {linearToGamma(m_r), linearToGamma(m_g), linearToGamma(m_b), m_a};
 }
 
+Color &Color::operator*=(double t) {
+    SetR(m_r * t);
+    SetG(m_g * t);
+    SetB(m_b * t);
+
+    return *this;
+}
+
+Color &Color::operator*=(const Color &v) {
+    SetR(m_r * v.r());
+    SetG(m_g * v.g());
+    SetB(m_b * v.b());
+
+    return *this;
+}
 
 
+Color operator*(const Color &lhs, const Color &rhs) {
+    return {lhs.r() * rhs.r(),
+            lhs.g() * rhs.g(),
+            lhs.b() * rhs.b()};
+}
 
+Color operator*(double t, const Color &v) {
+    return {v.r() * t, v.g() * t , v.b() * t};
+}
+
+Color operator*(const Color &v, double t) {
+    return t * v;
+}

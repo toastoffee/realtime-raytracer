@@ -41,6 +41,8 @@ public:
     Camera(const Vec3& pos, double fov, int renderHeight, int renderWidth);
 
     void RenderTo(Scene *scene, unsigned char *buf, int &w, int &h);
+
+    Color RayColor(const Ray &ray, Scene *scene, int depth);
 };
 
 
