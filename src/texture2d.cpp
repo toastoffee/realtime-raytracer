@@ -44,10 +44,10 @@ Color Texture2D::getColor(int x, int y) const {
 }
 
 Color Texture2D::Sample(double x, double y) const {
-    int x_idx = static_cast<int>(x * (float)m_w);
-    int y_idx = static_cast<int>(y * (float)m_h);
-    x_idx = MathTool::Clamp(x_idx, 0, m_w);
-    y_idx = MathTool::Clamp(y_idx, 0, m_h);
+    int x_idx = static_cast<int>(x * ((float)m_w - 0.1f));
+    int y_idx = static_cast<int>(y * ((float)m_h - 0.1f));
+    x_idx = MathTool::Clamp(x_idx, 0, m_w - 1);
+    y_idx = MathTool::Clamp(y_idx, 0, m_h - 1);
 
     return getColor(x_idx, y_idx);
 }

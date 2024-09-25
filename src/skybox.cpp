@@ -9,8 +9,6 @@
   */
 
 
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
 #include <stbi/stb_image.h>
 
 #include <iostream>
@@ -134,7 +132,7 @@ Color SkyBox::Sample(const Vec3 &dir) {
             double u = (intersect_u + 0.5f) / 1.0f;
             double v = (intersect_v + 0.5f) / 1.0f;
 
-            return m_cubeMaps["bottom.jpg"]->Sample(u, v);
+            return m_cubeMaps["bottom.jpg"]->Sample(1.0f-u, v);
         }
     }
 

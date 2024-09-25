@@ -65,7 +65,7 @@ public:
     static Vec3 Cross(const Vec3 &lhs, const Vec3 &rhs);
     static double Angle(const Vec3 &lhs, const Vec3 &rhs);
 
-//    static Vec3 Reflect(const Vec3 &inDir, const Vec3 &inNorm);
+    static Vec3 Reflect(const Vec3 &inDir, const Vec3 &inNorm);
 };
 
 std::ostream& operator<<(std::ostream &o, const Vec3 &v);

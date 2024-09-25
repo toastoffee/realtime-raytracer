@@ -23,5 +23,17 @@ public:
     virtual bool Scatter(const Ray& rayIn, Ray& rayScattered, const HitPayload& payload, Color& attenuation) const = 0;
 };
 
+class Metal : public Material {
+private:
+    Color m_albedo;
+    double m_fuzz;
+
+public:
+    Metal(const Color& albedo, double fuzz);
+
+    bool Scatter(const Ray &rayIn, Ray &rayScattered, const HitPayload &payload, Color &attenuation) const override;
+
+};
+
 
 #endif //REALTIME_RAYTRACER_MATERIAL_HPP

@@ -117,6 +117,10 @@ double Vec3::Angle(const Vec3 &lhs, const Vec3 &rhs) {
     return radians;
 }
 
+Vec3 Vec3::Reflect(const Vec3 &inDir, const Vec3 &inNorm) {
+    return inDir - 2.0f * Vec3::Dot(inDir, inNorm) * inNorm;
+}
+
 std::ostream &operator<<(std::ostream &o, const Vec3 &v) {
     return  o << v.x() << ' ' << v.y() << ' ' << v.z();
 }
