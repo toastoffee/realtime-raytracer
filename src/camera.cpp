@@ -61,16 +61,7 @@ void Camera::RenderTo(Scene *scene, unsigned char *buf, int &w, int &h) {
         for (int x = 0; x < w; ++x) {
             int idx = y * w + x;
             Ray ray = getRay(x, y);
-            Vec3 dir = ray.direction();
-
-            HitPayload payload;
-            Color color;
-
-            if(scene->RayCast(ray, payload, 0.001f, 1000.f)) {
-                color = Color(payload.normal.x(), payload.normal.y(), payload.normal.z(), 1.f);
-            } else {
-                color = Color(dir.x(), dir.y(), dir.z(), 1.0f);
-            }
+            Color color = RayColor(ray, scene, 3);
 
             buf[idx*4 + 0] = color.r8();
             buf[idx*4 + 1] = color.g8();
@@ -89,6 +80,7 @@ Color Camera::RayColor(const Ray &ray, Scene *scene, int depth) {
         return {0.f, 0.f, 0.f};
     }
 
+    // if hit object, then scatter and rayCast again
     if(scene->RayCast(ray, payload, 0.001f, infinity)) {
         Ray scattered;
         Color attenuation;
@@ -96,6 +88,13 @@ Color Camera::RayColor(const Ray &ray, Scene *scene, int depth) {
             return attenuation * RayColor(scattered, scene, depth-1);
         }
     }
+
+    // if not hit, then return background color
+    return getSkyBoxColor(ray);
+}
+
+Color Camera::getSkyBoxColor(const Ray &ray) {
+    return Color();
 }
 
 

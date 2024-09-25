@@ -37,6 +37,8 @@ private:
 
     Ray getRay(double x, double y);
 
+    Color getSkyBoxColor(const Ray& ray);
+
 public:
     Camera(const Vec3& pos, double fov, int renderHeight, int renderWidth);
 
