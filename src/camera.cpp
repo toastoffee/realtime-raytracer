@@ -14,9 +14,9 @@
 #include "math_tool.hpp"
 #include "sphere.hpp"
 
-Camera::Camera(const Vec3 &pos, double fov, int renderHeight, int renderWidth)
+Camera::Camera(const Vec3 &pos, double fov, int renderHeight, int renderWidth, const std::string &cubeMapDir)
         : m_pos(pos), m_fov(fov), m_renderHeight(renderHeight), m_renderWidth(renderWidth),
-          m_rayDepth(10) {
+          m_skyBox(cubeMapDir) ,m_rayDepth(10) {
 
     m_aspectRatio = (double)m_renderWidth / m_renderHeight;
 
@@ -96,7 +96,7 @@ Color Camera::RayColor(const Ray &ray, Scene *scene, int depth) {
 }
 
 Color Camera::getSkyBoxColor(const Ray &ray) {
-    return Color();
+    return m_skyBox.Sample(ray.direction());
 }
 
 

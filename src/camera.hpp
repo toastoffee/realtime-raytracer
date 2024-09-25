@@ -17,6 +17,7 @@
 #include "ray.hpp"
 #include "color.hpp"
 #include "scene.hpp"
+#include "skybox.hpp"
 
 class Camera {
 public:
@@ -32,6 +33,7 @@ private:
     Vec3 m_right, m_up, m_forward;
     Vec3 m_vp_leftBottom;
     Vec3 m_viewportUp, m_viewportRight;
+    SkyBox m_skyBox;
 
 private:
     void updateConfig();
@@ -41,7 +43,7 @@ private:
     Color getSkyBoxColor(const Ray& ray);
 
 public:
-    Camera(const Vec3& pos, double fov, int renderHeight, int renderWidth);
+    Camera(const Vec3& pos, double fov, int renderHeight, int renderWidth, const std::string &cubeMapDir);
 
     void RenderTo(Scene *scene, unsigned char *buf, int &w, int &h);
 

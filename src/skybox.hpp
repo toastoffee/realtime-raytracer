@@ -14,9 +14,10 @@
 #define REALTIME_RAYTRACER_SKYBOX_HPP
 
 #include <string>
-#include <map>
+#include <unordered_map>
 
-#include <texture2d.hpp>
+#include "texture2d.hpp"
+#include "vec3.hpp"
 
 class SkyBox {
 private:
@@ -29,12 +30,14 @@ private:
         "back.jpg"
     };
 
-    std::map<std::string, std::shared_ptr<Texture2D> > m_cubeMaps;
+    std::unordered_map<std::string, std::shared_ptr<Texture2D> > m_cubeMaps;
 
     void loadCubeMap(const std::string& cubeMapDir);
 
 public:
     explicit SkyBox(const std::string& cubeMapDir);
+
+    Color Sample(const Vec3 &dir);
 };
 
 

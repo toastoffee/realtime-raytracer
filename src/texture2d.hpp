@@ -19,15 +19,16 @@
 class Texture2D {
 private:
     int m_w, m_h;
+    int m_channels;
     unsigned char *m_data;
 
 private:
     Color getColor(int x, int y) const;
 
 public:
-    Texture2D(unsigned char *data, int w, int h);
+    Texture2D(unsigned char *data, int w, int h, int channels);
 
-    Color Sample(float x, float y) const;
+    Color Sample(double x, double y) const;
 };
 
 

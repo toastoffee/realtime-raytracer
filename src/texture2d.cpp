@@ -12,25 +12,38 @@
 #include "texture2d.hpp"
 #include "math_tool.hpp"
 
-Texture2D::Texture2D(unsigned char *data, int w, int h) :
-    m_w(w), m_h(h) {
 
-    m_data = (unsigned char *)malloc(w * h * 4);
-    memcpy(m_data, data, w * h * 4);
+Texture2D::Texture2D(unsigned char *data, int w, int h, int channels) :
+    m_w(w), m_h(h), m_channels(channels) {
+
+    m_data = (unsigned char *)malloc(w * h * channels);
+    memcpy(m_data, data, w * h * channels);
 }
+
 
 Color Texture2D::getColor(int x, int y) const {
     int idx = y * m_w + x;
 
-    return {
-        m_data[idx * 4 + 0],
-        m_data[idx * 4 + 1],
-        m_data[idx * 4 + 2],
-        m_data[idx * 4 + 3]
-    };
+    if(m_channels == 3) {
+        return {
+                m_data[idx * 3 + 0],
+                m_data[idx * 3 + 1],
+                m_data[idx * 3 + 2]
+        };
+    } else if(m_channels == 4) {
+        return {
+                m_data[idx * 4 + 0],
+                m_data[idx * 4 + 1],
+                m_data[idx * 4 + 2],
+                m_data[idx * 4 + 3]
+        };
+    }
+
+    // return Magenta
+    return {1.0f, 0.0f, 1.0f};
 }
 
-Color Texture2D::Sample(float x, float y) const {
+Color Texture2D::Sample(double x, double y) const {
     int x_idx = static_cast<int>(x * (float)m_w);
     int y_idx = static_cast<int>(y * (float)m_h);
     x_idx = MathTool::Clamp(x_idx, 0, m_w);
