@@ -24,6 +24,7 @@ public:
     Vec3 m_pos;
     double m_fov;   // vertical view range
     int m_renderWidth, m_renderHeight;
+    int m_rayDepth;
 
 private:
     /*! calc params */

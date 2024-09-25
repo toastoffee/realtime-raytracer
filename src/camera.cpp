@@ -15,7 +15,9 @@
 #include "sphere.hpp"
 
 Camera::Camera(const Vec3 &pos, double fov, int renderHeight, int renderWidth)
-        : m_pos(pos), m_fov(fov), m_renderHeight(renderHeight), m_renderWidth(renderWidth) {
+        : m_pos(pos), m_fov(fov), m_renderHeight(renderHeight), m_renderWidth(renderWidth),
+          m_rayDepth(10) {
+
     m_aspectRatio = (double)m_renderWidth / m_renderHeight;
 
     updateConfig();
@@ -61,7 +63,7 @@ void Camera::RenderTo(Scene *scene, unsigned char *buf, int &w, int &h) {
         for (int x = 0; x < w; ++x) {
             int idx = y * w + x;
             Ray ray = getRay(x, y);
-            Color color = RayColor(ray, scene, 3);
+            Color color = RayColor(ray, scene, m_rayDepth);
 
             buf[idx*4 + 0] = color.r8();
             buf[idx*4 + 1] = color.g8();

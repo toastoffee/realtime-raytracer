@@ -69,6 +69,26 @@ bool MathTool::SolveQuadratic(double a, double b, double c, double &x0, double &
     return true;
 }
 
+double MathTool::Clamp(double x, double min, double max) {
+    if(x < min){
+        return min;
+    } else if(x > max) {
+        return max;
+    } else {
+        return x;
+    }
+}
+
+int MathTool::Clamp(int x, int min, int max) {
+    if(x < min){
+        return min;
+    } else if(x > max) {
+        return max;
+    } else {
+        return x;
+    }
+}
+
 
 
 

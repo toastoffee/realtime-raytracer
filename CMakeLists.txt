@@ -19,6 +19,10 @@ add_executable(realtime_raytracer main.cpp
         # glad
         third_party/glad/src/glad.c
 
+        # stbi
+        third_party/stbi/stb_image.h
+        third_party/stbi/stb_image.cpp
+
         # imgui
         third_party/imgui/imgui.cpp
         third_party/imgui/imgui_draw.cpp
@@ -53,6 +57,10 @@ add_executable(realtime_raytracer main.cpp
         src/scene.cpp
         src/material.cpp
         src/material.hpp
+        src/skybox.cpp
+        src/skybox.hpp
+        src/texture2d.cpp
+        src/texture2d.hpp
 )
 
 target_link_libraries(${PROJECT_NAME} glfw)

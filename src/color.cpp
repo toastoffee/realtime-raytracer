@@ -14,13 +14,28 @@
 #include "color.hpp"
 
 Color::Color() :
-m_r(0), m_g(0), m_b(0), m_a(1) {}
+m_r(0.0f), m_g(0.0f), m_b(0.0f), m_a(1.0f) {}
 
 Color::Color(double r, double g, double b) :
 m_r(r), m_g(g), m_b(b), m_a(1.0f) {}
 
 Color::Color(double r, double g, double b, double a) :
 m_r(r), m_g(g), m_b(b), m_a(a) {}
+
+
+Color::Color(unsigned char r, unsigned char g, unsigned char b) {
+    SetR(static_cast<double>(r) / 255.0f);
+    SetG(static_cast<double>(g) / 255.0f);
+    SetB(static_cast<double>(b) / 255.0f);
+    m_a = 1.0f;
+}
+
+Color::Color(unsigned char r, unsigned char g, unsigned char b, unsigned char a) {
+    SetR(static_cast<double>(r) / 255.0f);
+    SetG(static_cast<double>(g) / 255.0f);
+    SetB(static_cast<double>(b) / 255.0f);
+    SetA(static_cast<double>(a) / 255.0f);
+}
 
 double Color::clamp(double x, double min, double max) {
     if(x < min){
@@ -38,7 +53,7 @@ double Color::linearToGamma(double x) {
 }
 
 unsigned char Color::convertTo8(double x) {
-    return static_cast<unsigned char>(256 * clamp(x, 0.0, 0.9999));
+    return static_cast<unsigned char>(256.0f * clamp(x, 0.0, 0.9999));
 }
 
 double Color::r() const {
@@ -108,7 +123,6 @@ Color &Color::operator*=(const Color &v) {
 
     return *this;
 }
-
 
 Color operator*(const Color &lhs, const Color &rhs) {
     return {lhs.r() * rhs.r(),

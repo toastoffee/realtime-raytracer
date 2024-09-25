@@ -26,6 +26,8 @@ public:
     Color();
     Color(double r, double g, double b);
     Color(double r, double g, double b, double a);
+    Color(unsigned char r, unsigned char g, unsigned char b);
+    Color(unsigned char r, unsigned char g, unsigned char b, unsigned char a);
 
     double r() const;
     double g() const;

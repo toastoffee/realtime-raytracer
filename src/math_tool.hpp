@@ -31,6 +31,9 @@ public:
 
     static void Swap(double &l, double &r);
 
+    static double Clamp(double x, double min, double max);
+    static int Clamp(int x, int min, int max);
+
     static bool isInInterval(double v, double min, double max);
 
     static bool SolveQuadratic(double a, double b, double c, double &x0, double &x1);
