@@ -13,9 +13,11 @@
 #include "camera.hpp"
 #include "math_tool.hpp"
 #include "sphere.hpp"
+#include "chrono"
 
 Camera::Camera(const Vec3 &pos, double fov, int renderHeight, int renderWidth, const std::string &cubeMapDir)
         : m_pos(pos), m_fov(fov), m_renderHeight(renderHeight), m_renderWidth(renderWidth),
+          m_lastX(0), m_lastY(0),
           m_skyBox(cubeMapDir) ,m_rayDepth(10) {
 
     m_aspectRatio = (double)m_renderWidth / m_renderHeight;
@@ -59,8 +61,10 @@ void Camera::RenderTo(Scene *scene, unsigned char *buf, int &w, int &h) {
     w = m_renderWidth;
     h = m_renderHeight;
 
-    for (int y = 0; y < h; ++y) {
-        for (int x = 0; x < w; ++x) {
+    auto start = std::chrono::high_resolution_clock::now();
+
+    for (int y = m_lastY; y < h; y++) {
+        for (int x = m_lastX; x < w; x++) {
             int idx = y * w + x;
             Ray ray = getRay(x, y);
             Color color = RayColor(ray, scene, m_rayDepth);
@@ -70,6 +74,15 @@ void Camera::RenderTo(Scene *scene, unsigned char *buf, int &w, int &h) {
             buf[idx*4 + 2] = color.b8();
             buf[idx*4 + 3] = color.a8();
 
+            m_lastY = y;
+            m_lastX = (x+1) % w;
+
+            auto stop = std::chrono::high_resolution_clock::now();
+            auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
+
+            if(duration > 33) {
+                return;
+            }
         }
     }
 }

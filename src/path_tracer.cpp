@@ -18,7 +18,7 @@ PathTracer::PathTracer(Scene *scene) :
     m_window(1600, 900),
     m_resolutionMaxX(2048), m_resolutionMaxY(2048) {
 
-    m_renderData = new unsigned char[m_resolutionMaxX * m_resolutionMaxY * 4];
+    m_renderData = new unsigned char[m_resolutionMaxX * m_resolutionMaxY * 4] {0};
 
     m_camFov = (float)m_cam.m_fov;
     m_resolutionX = m_cam.m_renderWidth;

@@ -34,6 +34,7 @@ private:
     Vec3 m_vp_leftBottom;
     Vec3 m_viewportDown, m_viewportRight;
     SkyBox m_skyBox;
+    int m_lastY, m_lastX;
 
 private:
     void updateConfig();
