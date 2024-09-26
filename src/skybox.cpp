@@ -27,6 +27,7 @@ void SkyBox::loadCubeMap(const std::string& cubeMapDir) {
     int width, height, nrChannels;
     for (unsigned int i = 0; i < m_faces.size(); i++)
     {
+        stbi_set_flip_vertically_on_load(false);
         unsigned char *data = stbi_load((cubeMapDir + m_faces[i]).c_str(), &width, &height, &nrChannels, 0);
         if (data)
         {
@@ -43,8 +44,6 @@ void SkyBox::loadCubeMap(const std::string& cubeMapDir) {
 }
 
 Color SkyBox::Sample(const Vec3 &dir) {
-
-    double quarter_pi = PI / 4.0f;
 
     // forward
     if(dir.z() > 0.0f) {

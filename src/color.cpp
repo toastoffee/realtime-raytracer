@@ -49,7 +49,7 @@ double Color::clamp(double x, double min, double max) {
 
 double Color::linearToGamma(double x) {
     // gamma = 2.0
-    return sqrt(x);
+    return pow(x, 1.0 / 1.0);
 }
 
 unsigned char Color::convertTo8(double x) {
