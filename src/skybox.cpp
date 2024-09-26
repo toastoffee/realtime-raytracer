@@ -57,7 +57,7 @@ Color SkyBox::Sample(const Vec3 &dir) {
             double u = (intersect_u + 0.5f) / 1.0f;
             double v = (intersect_v + 0.5f) / 1.0f;
 
-            return m_cubeMaps["front.jpg"]->Sample(u, v);
+            return m_cubeMaps["front.jpg"]->Sample(u, 1.0-v);
         }
     }
 
@@ -72,7 +72,7 @@ Color SkyBox::Sample(const Vec3 &dir) {
             double u = (intersect_u + 0.5f) / 1.0f;
             double v = (intersect_v + 0.5f) / 1.0f;
 
-            return m_cubeMaps["back.jpg"]->Sample(u, v);
+            return m_cubeMaps["back.jpg"]->Sample(1.0-u, 1.0-v);
         }
     }
 
@@ -87,7 +87,7 @@ Color SkyBox::Sample(const Vec3 &dir) {
             double u = (intersect_u + 0.5f) / 1.0f;
             double v = (intersect_v + 0.5f) / 1.0f;
 
-            return m_cubeMaps["right.jpg"]->Sample(1.0f - u, v);
+            return m_cubeMaps["right.jpg"]->Sample( 1.0-u, 1.0-v);
         }
     }
 
@@ -102,12 +102,12 @@ Color SkyBox::Sample(const Vec3 &dir) {
             double u = (intersect_u + 0.5f) / 1.0f;
             double v = (intersect_v + 0.5f) / 1.0f;
 
-            return m_cubeMaps["left.jpg"]->Sample(u, v);
+            return m_cubeMaps["left.jpg"]->Sample(u, 1.0-v);
         }
     }
 
     // up
-    if(dir.y() <= 0.0f) {
+    if(dir.y() > 0.0f) {
         double t = 0.5f / dir.y();
         double intersect_u = t * dir.x();
         double intersect_v = t * dir.z();
@@ -117,12 +117,12 @@ Color SkyBox::Sample(const Vec3 &dir) {
             double u = (intersect_u + 0.5f) / 1.0f;
             double v = (intersect_v + 0.5f) / 1.0f;
 
-            return m_cubeMaps["top.jpg"]->Sample(1.0f-u, 1.0f-v);
+            return m_cubeMaps["top.jpg"]->Sample(u, v);
         }
     }
 
     // bottom
-    if(dir.y() > 0.0f) {
+    if(dir.y() <= 0.0f) {
         double t = -0.5f / dir.y();
         double intersect_u = t * dir.x();
         double intersect_v = t * dir.z();
@@ -132,7 +132,7 @@ Color SkyBox::Sample(const Vec3 &dir) {
             double u = (intersect_u + 0.5f) / 1.0f;
             double v = (intersect_v + 0.5f) / 1.0f;
 
-            return m_cubeMaps["bottom.jpg"]->Sample(1.0f-u, v);
+            return m_cubeMaps["bottom.jpg"]->Sample(u, 1.0-v);
         }
     }
 

@@ -32,7 +32,7 @@ private:
     double m_aspectRatio;   // width / height
     Vec3 m_right, m_up, m_forward;
     Vec3 m_vp_leftBottom;
-    Vec3 m_viewportUp, m_viewportRight;
+    Vec3 m_viewportDown, m_viewportRight;
     SkyBox m_skyBox;
 
 private:

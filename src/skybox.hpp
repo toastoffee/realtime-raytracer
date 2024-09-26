@@ -19,8 +19,10 @@
 #include "texture2d.hpp"
 #include "vec3.hpp"
 
+
 class SkyBox {
 private:
+
     std::vector<std::string> m_faces = {
         "right.jpg",
         "left.jpg",

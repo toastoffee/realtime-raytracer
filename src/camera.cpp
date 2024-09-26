@@ -28,7 +28,7 @@ Ray Camera::getRay(double x, double y) {
 
     Vec3 viewportPoint = m_vp_leftBottom
                          + ((x + 0.5f) / m_renderWidth) * m_viewportRight
-                         + ((y + 0.5f) / m_renderHeight) * m_viewportUp;
+                         + ((y + 0.5f) / m_renderHeight) * m_viewportDown;
 
     Vec3 direction = (viewportPoint - origin).normalized();
 
@@ -44,12 +44,12 @@ void Camera::updateConfig() {
     double viewportHeight = 2.f * MathTool::tan(MathTool::Deg2Rad(m_fov/2.0f)) * viewportDist;
     double viewportWidth = viewportHeight * m_aspectRatio;
 
-    m_viewportUp = m_up * viewportHeight;
+    m_viewportDown = - m_up * viewportHeight;
     m_viewportRight = m_right * viewportWidth;
 
     m_vp_leftBottom = m_pos
                       + m_forward * viewportDist
-                      - m_viewportUp / 2
+                      - m_viewportDown / 2
                       - m_viewportRight / 2;
 }
 
