@@ -12,6 +12,7 @@
 
 #include "material.hpp"
 #include "object.hpp"
+#include "random.hpp"
 
 Metal::Metal(const Color &albedo, double fuzz) :
  m_albedo(albedo), m_fuzz(fuzz < 1.0f ? fuzz : 1.0f) { }
@@ -19,6 +20,7 @@ Metal::Metal(const Color &albedo, double fuzz) :
 
 bool Metal::Scatter(const Ray &rayIn, Ray &rayScattered, const HitPayload &payload, Color &attenuation) const {
     Vec3 reflected = Vec3::Reflect(rayIn.direction().normalized(), payload.normal);
+    reflected = (reflected + m_fuzz * Random::RandVecOnUnitSphere()).normalized();
     rayScattered = Ray(payload.p, reflected);
     attenuation = m_albedo;
     return Vec3::Dot(rayScattered.direction(), payload.normal) > 0.0f;

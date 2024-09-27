@@ -4,14 +4,13 @@
 #include "skybox.hpp"
 #include "material.hpp"
 
-#include "random.hpp"
 
 int main() {
 
     std::unique_ptr<Scene> scene(new Scene());
 
-    auto metal_left_mat = std::make_shared<Metal>(Color(0.5, 0.5, 0.5), 0.0f);
-    auto metal_right_mat = std::make_shared<Metal>(Color(0.5, 0.5, 0.4), 0.0f);
+    auto metal_left_mat = std::make_shared<Metal>(Color(0.5, 0.5, 0.5), 0.3f);
+    auto metal_right_mat = std::make_shared<Metal>(Color(0.5, 0.5, 0.4), 0.7f);
 
     auto sphere_left = new Sphere(Vec3(-0.5, 0, 1), 0.5f);
     sphere_left->mat = metal_left_mat;
@@ -24,7 +23,6 @@ int main() {
     std::unique_ptr<PathTracer> app(new PathTracer(scene.get()));
 
     app->MainLoop();
-
 
     return 0;
 }

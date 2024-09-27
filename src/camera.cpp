@@ -112,6 +112,7 @@ Color Camera::RayColor(const Ray &ray, Scene *scene, int depth) {
         if(payload.hitObject->mat->Scatter(ray, scattered, payload, attenuation)) {
             return attenuation * RayColor(scattered, scene, depth-1);
         }
+        return {0.f, 0.f, 0.f};
     }
 
     // if not hit, then return background color
