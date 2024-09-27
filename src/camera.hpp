@@ -26,6 +26,7 @@ public:
     double m_fov;   // vertical view range
     int m_renderWidth, m_renderHeight;
     int m_rayDepth;
+    int m_samples;
 
 private:
     /*! calc params */
@@ -35,7 +36,6 @@ private:
     Vec3 m_viewportDown, m_viewportRight;
     SkyBox m_skyBox;
     int m_lastY, m_lastX;
-    int m_samples;
 
 private:
     void updateConfig();

@@ -48,6 +48,8 @@ void PathTracer::renderCameraProps() {
 
     ImGui::Begin("camera ");
 
+    ImGui::Text("samples:%d", m_cam.m_samples);
+
     ImGui::SliderFloat("fov", &m_camFov, 0.0f, 180.0f);
     m_cam.m_fov = (double)m_camFov;
 
