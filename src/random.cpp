@@ -25,7 +25,7 @@ double Random::Range(double min, double max) {
 Vec3 Random::RandVecOnUnitSphere() {
     double radius = 1.0f;
     double theta = Range(0.f, 180.f) * MathTool::deg2Rad;
-    double phi = Range(0.f, 180.f) * MathTool::deg2Rad;
+    double phi = Range(0.f, 360.f) * MathTool::deg2Rad;
 
     double x = radius * MathTool::sin(theta) * MathTool::cos(phi);
     double y = radius * MathTool::sin(theta) * MathTool::sin(phi);
