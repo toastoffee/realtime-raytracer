@@ -20,6 +20,9 @@ const double infinity =  std::numeric_limits<double>::infinity();
 
 class MathTool {
 public:
+    static double deg2Rad;
+    static double rad2Deg;
+
     static double Deg2Rad(double degrees);
     static double Rad2Deg(double radians);
 

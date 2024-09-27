@@ -13,6 +13,9 @@
 
 #include <cmath>
 
+double MathTool::deg2Rad = PI / 180.0f;
+double MathTool::rad2Deg = 180.0f / PI;
+
 double MathTool::Deg2Rad(double degrees) {
     return degrees * PI / 180.0f;
 }

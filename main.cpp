@@ -4,6 +4,8 @@
 #include "skybox.hpp"
 #include "material.hpp"
 
+#include "random.hpp"
+
 int main() {
 
     std::unique_ptr<Scene> scene(new Scene());
@@ -22,6 +24,7 @@ int main() {
     std::unique_ptr<PathTracer> app(new PathTracer(scene.get()));
 
     app->MainLoop();
+
 
     return 0;
 }

@@ -61,6 +61,8 @@ add_executable(realtime_raytracer main.cpp
         src/skybox.hpp
         src/texture2d.cpp
         src/texture2d.hpp
+        src/random.cpp
+        src/random.hpp
 )
 
 target_link_libraries(${PROJECT_NAME} glfw)
