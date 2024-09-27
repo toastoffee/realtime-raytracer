@@ -8,17 +8,16 @@ int main() {
 
     std::unique_ptr<Scene> scene(new Scene());
 
-    auto metal_mat = std::make_shared<Metal>(Color(0.5, 0.5, 0.5), 0.0f);
+    auto metal_left_mat = std::make_shared<Metal>(Color(0.5, 0.5, 0.5), 0.0f);
+    auto metal_right_mat = std::make_shared<Metal>(Color(0.5, 0.5, 0.4), 0.0f);
 
-    auto sphere = new Sphere(Vec3(-0.5, 0, 1), 0.5f);
-    sphere->mat = metal_mat;
-    scene->AddObject(std::unique_ptr<Sphere>(sphere));
+    auto sphere_left = new Sphere(Vec3(-0.5, 0, 1), 0.5f);
+    sphere_left->mat = metal_left_mat;
+    scene->AddObject(std::unique_ptr<Sphere>(sphere_left));
 
-    auto ground = new Sphere(Vec3(0.5, 0, 1), 0.5f);
-    ground->mat = metal_mat;
-    scene->AddObject(std::unique_ptr<Sphere>(ground));
-
-
+    auto sphere_right = new Sphere(Vec3(0.5, 0, 1), 0.5f);
+    sphere_right->mat = metal_right_mat;
+    scene->AddObject(std::unique_ptr<Sphere>(sphere_right));
 
     std::unique_ptr<PathTracer> app(new PathTracer(scene.get()));
 

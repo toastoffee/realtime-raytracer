@@ -32,7 +32,6 @@ public:
     Metal(const Color& albedo, double fuzz);
 
     bool Scatter(const Ray &rayIn, Ray &rayScattered, const HitPayload &payload, Color &attenuation) const override;
-
 };
 
 
