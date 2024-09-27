@@ -19,7 +19,7 @@ Metal::Metal(const Color &albedo, double fuzz) :
 
 
 bool Metal::Scatter(const Ray &rayIn, Ray &rayScattered, const HitPayload &payload, Color &attenuation) const {
-    Vec3 reflected = Vec3::Reflect(rayIn.direction().normalized(), payload.normal);
+    Vec3 reflected = Vec3::Reflect(rayIn.direction().normalized(), payload.normal).normalized();
     reflected = (reflected + m_fuzz * Random::RandVecOnUnitSphere()).normalized();
     rayScattered = Ray(payload.p, reflected);
     attenuation = m_albedo;
