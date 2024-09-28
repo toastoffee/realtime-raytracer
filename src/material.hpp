@@ -34,5 +34,16 @@ public:
     bool Scatter(const Ray &rayIn, Ray &rayScattered, const HitPayload &payload, Color &attenuation) const override;
 };
 
+class Lambertian : public Material {
+private:
+    Color m_albedo;
+public:
+    Lambertian(const Color& albedo);
+
+    bool Scatter(const Ray &rayIn, Ray &rayScattered, const HitPayload &payload, Color &attenuation) const override;
+
+
+};
+
 
 #endif //REALTIME_RAYTRACER_MATERIAL_HPP
