@@ -47,9 +47,9 @@ double Color::clamp(double x, double min, double max) {
     }
 }
 
-double Color::linearToGamma(double x) {
+double Color::linearToGamma(double x, double gamma) {
     // gamma = 2.0
-    return pow(x, 1.0 / 1.0);
+    return pow(x, 1.0 / gamma);
 }
 
 unsigned char Color::convertTo8(double x) {
@@ -104,8 +104,8 @@ void Color::SetA(double a) {
     m_a = clamp(a, 0.0f, 1.0f);
 }
 
-Color Color::gamma() const {
-    return {linearToGamma(m_r), linearToGamma(m_g), linearToGamma(m_b), m_a};
+Color Color::gamma(double g) const {
+    return {linearToGamma(m_r, g), linearToGamma(m_g, g), linearToGamma(m_b, g), m_a};
 }
 
 Color &Color::operator*=(double t) {

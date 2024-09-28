@@ -9,7 +9,7 @@ int main() {
 
     std::unique_ptr<Scene> scene(new Scene());
 
-    auto metal_left_mat = std::make_shared<Metal>(Color(0.5, 0.5, 0.5), 0.2f);
+    auto metal_left_mat = std::make_shared<Metal>(Color(0.5, 0.5, 0.5), 0.1f);
     auto metal_right_mat = std::make_shared<Metal>(Color(0.5, 0.5, 0.4), 0.5f);
 
     auto sphere_left = new Sphere(Vec3(-0.5, 0, 1), 0.5f);

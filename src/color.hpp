@@ -19,7 +19,7 @@ private:
     double m_r, m_g, m_b, m_a;
 
     static double clamp(double x, double min, double max);
-    static double linearToGamma(double x);
+    static double linearToGamma(double x, double gamma);
     static unsigned char convertTo8(double x);
 
 public:
@@ -44,7 +44,7 @@ public:
     void SetB(double b);
     void SetA(double a);
 
-    Color gamma() const;
+    Color gamma(double g) const;
 
     Color& operator*=(double t);
     Color& operator*=(const Color &v);

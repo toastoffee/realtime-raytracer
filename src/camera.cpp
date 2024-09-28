@@ -15,6 +15,8 @@
 #include "sphere.hpp"
 #include "chrono"
 
+#include "random.hpp"
+
 Camera::Camera(const Vec3 &pos, double fov, int renderHeight, int renderWidth, const std::string &cubeMapDir)
         : m_pos(pos), m_fov(fov), m_renderHeight(renderHeight), m_renderWidth(renderWidth),
           m_lastX(0), m_lastY(0), m_samples(0),
@@ -67,14 +69,13 @@ void Camera::RenderTo(Scene *scene, unsigned char *buf, int &w, int &h) {
         m_lastX = 0;
         m_lastY = 0;
         m_samples++;
-        std::cout << m_samples << std::endl;
     }
 
     for (int y = m_lastY; y < h; y++) {
         for (int x = (m_lastX + 1) % w; x < w; x++) {
             int idx = y * w + x;
-            Ray ray = getRay(x, y);
-            Color color = RayColor(ray, scene, m_rayDepth);
+            Ray ray = getRay(x + Random::Range(-0.5,0.5), y + Random::Range(-0.5,0.5));
+            Color color = RayColor(ray, scene, m_rayDepth).gamma(1.0);
 
             float formerWeight = (float)(m_samples) / (float)(m_samples + 1);
 
