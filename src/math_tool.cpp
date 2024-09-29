@@ -95,9 +95,9 @@ int MathTool::Clamp(int x, int min, int max) {
 bool MathTool::CheckTriangleIntersect(const Vec3 &v0, const Vec3 &v1, const Vec3 &v2, const Ray &ray, double &tNear) {
 
     // triangle is counter-clockwise aligned
-    auto e1 = v1 - v0;
-    auto e2 = v2 - v0;
-    auto n = Vec3::Cross(e1, e2);
+    auto ab = v1 - v0;  // AB
+    auto ac = v2 - v0;  // AC
+    auto n = Vec3::Cross(ab, ac);
 
     // check if denominator is not 0
     auto denominator = Vec3::Dot(ray.direction(), n);
@@ -111,8 +111,16 @@ bool MathTool::CheckTriangleIntersect(const Vec3 &v0, const Vec3 &v1, const Vec3
         return false;
     }
 
+    auto p = ray.GetPoint(t);
 
+    auto bc = v2 - v1;
+    auto ca = v0 - v2;
+    auto signDir = Vec3::Cross(ab, ac);
+    bool sign_ab = Vec3::Dot(signDir, Vec3::Cross(ab, p - v0)) > 0;
+    bool sign_bc = Vec3::Dot(signDir, Vec3::Cross(bc, p - v1)) > 0;
+    bool sign_ca = Vec3::Dot(signDir, Vec3::Cross(ca, p - v2)) > 0;
 
+    return sign_ab && sign_bc && sign_ca;
 }
 
 
