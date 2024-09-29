@@ -42,7 +42,6 @@ public:
 
     bool Scatter(const Ray &rayIn, Ray &rayScattered, const HitPayload &payload, Color &attenuation) const override;
 
-
 };
 
 

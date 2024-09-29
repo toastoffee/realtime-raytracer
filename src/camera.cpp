@@ -82,7 +82,7 @@ void Camera::RenderTo(Scene *scene, unsigned char *buf, int &w, int &h) {
             buf[idx*4 + 0] = static_cast<unsigned char >((float)buf[idx*4 + 0] * formerWeight + (float)color.r8() * (1.0f - formerWeight));
             buf[idx*4 + 1] = static_cast<unsigned char >((float)buf[idx*4 + 1] * formerWeight + (float)color.g8() * (1.0f - formerWeight));
             buf[idx*4 + 2] = static_cast<unsigned char >((float)buf[idx*4 + 2] * formerWeight + (float)color.b8() * (1.0f - formerWeight));
-            buf[idx*4 + 3] = static_cast<unsigned char >((float)buf[idx*4 + 3] * formerWeight + (float)color.a8() * (1.0f - formerWeight));
+            buf[idx*4 + 3] = 255;
 
             m_lastY = y;
             m_lastX = x;
