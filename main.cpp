@@ -5,6 +5,8 @@
 #include "material.hpp"
 #include "triangle.hpp"
 
+#include <assimp/Importer.hpp>
+
 int main() {
 
     std::unique_ptr<Scene> scene(new Scene());

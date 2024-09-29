@@ -11,8 +11,10 @@ include_directories(${PROJECT_SOURCE_DIR}/third_party)
 include_directories(${PROJECT_SOURCE_DIR}/third_party/glad/include)
 include_directories(${PROJECT_SOURCE_DIR}/third_party/glfw/include)
 include_directories(${PROJECT_SOURCE_DIR}/src)
+include_directories(${PROJECT_SOURCE_DIR}/third_party/assimp/include)
 
 link_directories(third_party/glfw/lib)
+link_directories(third_party/assimp/lib)
 
 add_executable(realtime_raytracer main.cpp
 
@@ -67,4 +69,4 @@ add_executable(realtime_raytracer main.cpp
         src/triangle.hpp
 )
 
-target_link_libraries(${PROJECT_NAME} glfw)
+target_link_libraries(${PROJECT_NAME} glfw assimp)
