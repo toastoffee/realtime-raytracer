@@ -10,7 +10,7 @@
 
 
 
-#include "Triangle.hpp"
+#include "triangle.hpp"
 #include "math_tool.hpp"
 
 Triangle::Triangle(const Vec3 &a, const Vec3 &b, const Vec3 &c) :
@@ -24,7 +24,6 @@ bool Triangle::CheckHit(const Ray &ray, HitPayload &payload, double minRange, do
     if(!isIntersected || !MathTool::isInInterval(tNear, minRange, maxRange)) {
         return false;
     }
-
 
     payload.t = tNear;
     payload.p = ray.GetPoint(tNear);
