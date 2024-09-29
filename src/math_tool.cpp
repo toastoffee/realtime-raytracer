@@ -120,7 +120,11 @@ bool MathTool::CheckTriangleIntersect(const Vec3 &v0, const Vec3 &v1, const Vec3
     bool sign_bc = Vec3::Dot(signDir, Vec3::Cross(bc, p - v1)) > 0;
     bool sign_ca = Vec3::Dot(signDir, Vec3::Cross(ca, p - v2)) > 0;
 
-    return sign_ab && sign_bc && sign_ca;
+    if( sign_ab && sign_bc && sign_ca ) {
+        tNear = t;
+        return true;
+    }
+    return false;
 }
 
 

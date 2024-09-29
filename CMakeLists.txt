@@ -63,6 +63,8 @@ add_executable(realtime_raytracer main.cpp
         src/texture2d.hpp
         src/random.cpp
         src/random.hpp
+        src/Triangle.cpp
+        src/Triangle.hpp
 )
 
 target_link_libraries(${PROJECT_NAME} glfw)
