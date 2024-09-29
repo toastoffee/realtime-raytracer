@@ -92,6 +92,29 @@ int MathTool::Clamp(int x, int min, int max) {
     }
 }
 
+bool MathTool::CheckTriangleIntersect(const Vec3 &v0, const Vec3 &v1, const Vec3 &v2, const Ray &ray, double &tNear) {
+
+    // triangle is counter-clockwise aligned
+    auto e1 = v1 - v0;
+    auto e2 = v2 - v0;
+    auto n = Vec3::Cross(e1, e2);
+
+    // check if denominator is not 0
+    auto denominator = Vec3::Dot(ray.direction(), n);
+    if(denominator == 0.f) {
+        return false;
+    }
+
+    // check if t greater than 0
+    auto t = Vec3::Dot(v0 - ray.origin(), n) / denominator;
+    if(t < 0.f) {
+        return false;
+    }
+
+
+
+}
+
 
 
 

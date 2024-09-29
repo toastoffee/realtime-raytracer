@@ -15,6 +15,9 @@
 
 #include <limits>
 
+#include "vec3.hpp"
+#include "ray.hpp"
+
 const double PI = 3.1415926535897932385;
 const double infinity =  std::numeric_limits<double>::infinity();
 
@@ -40,6 +43,8 @@ public:
     static bool isInInterval(double v, double min, double max);
 
     static bool SolveQuadratic(double a, double b, double c, double &x0, double &x1);
+
+    static bool CheckTriangleIntersect(const Vec3 &v0, const Vec3 &v1, const Vec3 &v2, const Ray &ray, double &tNear);
 };
 
 
