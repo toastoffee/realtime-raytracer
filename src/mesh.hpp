@@ -13,28 +13,23 @@
 #ifndef REALTIME_RAYTRACER_MESH_HPP
 #define REALTIME_RAYTRACER_MESH_HPP
 
-#include "ray.hpp"
-#include "color.hpp"
-#include "object.hpp"
+#include "vec3.hpp"
 
-#include <string>
+#include <vector>
 
-#include <assimp/scene.h>
-#include <assimp/Importer.hpp>
-#include <assimp/postprocess.h>
+struct TriangleFace {
 
+};
 
-class Mesh : public Object {
-private:
-    void loadMesh(const std::string &path);
-
-    void processNode(aiNode *node, const aiScene *scene);
-
-    void processMesh(aiMesh *mesh, const aiScene *scene);
+class Mesh {
+public:
+    std::vector<Vec3> m_vertices;
+    std::vector<unsigned int> m_indices;
 
 public:
+    Mesh(const std::vector<Vec3> &vertices, const std::vector<unsigned int> &indices);
 
-    bool CheckHit(const Ray &ray, HitPayload &payload, double minRange, double maxRange) override;
+
 };
 
 

@@ -23,12 +23,12 @@ int main() {
 //    scene->AddObject(std::unique_ptr<Sphere>(sphere_right));
 
 
-    Vec3 a(-0.5, -0.5, 1);
-    Vec3 b(-0.5, 0.5, 1);
-    Vec3 c(0.5, 0.5, 1);
-    auto triangle = new Triangle(a, b, c);
-    triangle->mat = metal_left_mat;
-    scene->AddObject(std::unique_ptr<Triangle>(triangle));
+//    Vec3 a(-0.5, -0.5, 1);
+//    Vec3 b(-0.5, 0.5, 1);
+//    Vec3 c(0.5, 0.5, 1);
+//    auto triangle = new Triangle(a, b, c);
+//    triangle->mat = metal_left_mat;
+//    scene->AddObject(std::unique_ptr<Triangle>(triangle));
 
     std::unique_ptr<PathTracer> app(new PathTracer(scene.get()));
 
