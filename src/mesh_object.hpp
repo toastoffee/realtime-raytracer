@@ -17,6 +17,7 @@
 #include "object.hpp"
 
 #include <vector>
+#include <string>
 
 #include <assimp/postprocess.h>
 #include <assimp/Importer.hpp>
@@ -34,9 +35,11 @@ private:
     void processNode(aiNode *node, const aiScene *scene);
 
     // transform aiMesh to mesh
-    Mesh* processMesh(aiMesh *mesh, const aiScene *scene);
+    static Mesh* convertMesh(aiMesh *mesh, const aiScene *scene);
 
 public:
+    explicit MeshObject(const std::string &path);
+
     bool CheckHit(const Ray &ray, HitPayload &payload, double minRange, double maxRange) override;
 };
 

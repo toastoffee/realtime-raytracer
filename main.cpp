@@ -4,8 +4,8 @@
 #include "skybox.hpp"
 #include "material.hpp"
 #include "triangle.hpp"
+#include "mesh_object.hpp"
 
-#include <assimp/Importer.hpp>
 
 int main() {
 
@@ -29,6 +29,8 @@ int main() {
 //    auto triangle = new Triangle(a, b, c);
 //    triangle->mat = metal_left_mat;
 //    scene->AddObject(std::unique_ptr<Triangle>(triangle));
+
+    MeshObject nanoSuit("../static/nanosuit/nanosuit.obj");
 
     std::unique_ptr<PathTracer> app(new PathTracer(scene.get()));
 
