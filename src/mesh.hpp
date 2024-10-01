@@ -17,9 +17,6 @@
 
 #include <vector>
 
-struct TriangleFace {
-
-};
 
 class Mesh {
 public:

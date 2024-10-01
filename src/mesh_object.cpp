@@ -11,6 +11,7 @@
 
 
 #include "mesh_object.hpp"
+#include "math_tool.hpp"
 
 void MeshObject::loadMeshes(const std::string &path) {
     // assimp read file
@@ -64,10 +65,34 @@ Mesh *MeshObject::convertMesh(aiMesh *mesh, const aiScene *scene) {
 }
 
 bool MeshObject::CheckHit(const Ray &ray, HitPayload &payload, double minRange, double maxRange) {
-    return false;
+    double tNear = infinity;
+    HitPayload payloadNear;
 
+    for (auto triangle : m_triangles) {
+        // if hit
+        if(triangle.CheckHit(ray, payloadNear, minRange, maxRange)) {
+            if(payloadNear.t < tNear) {
+                tNear = payloadNear.t;
+                payload = payloadNear;
+            }
+        }
+    }
+
+    return tNear != infinity;
 }
 
-MeshObject::MeshObject(const std::string &path) {
+MeshObject::MeshObject(const std::string &path, const Vec3 &pos, const std::shared_ptr<Material> &material) : m_pos(pos) {
     loadMeshes(path);
+
+    for (auto mesh : m_meshes) {
+        for (int i = 0; i < mesh->m_indices.size(); i += 3) {
+            auto a = m_pos + mesh->m_vertices[i];
+            auto b = m_pos + mesh->m_vertices[i+1];
+            auto c = m_pos + mesh->m_vertices[i+2];
+
+            Triangle face(a, b, c);
+            face.mat = material;
+            m_triangles.push_back(face);
+        }
+    }
 }

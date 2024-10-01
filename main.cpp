@@ -30,7 +30,10 @@ int main() {
 //    triangle->mat = metal_left_mat;
 //    scene->AddObject(std::unique_ptr<Triangle>(triangle));
 
-    MeshObject nanoSuit("../static/nanosuit/nanosuit.obj");
+//    auto cube = new MeshObject("../static/nanosuit/nanosuit.obj", Vec3(0, -8, 10), metal_left_mat);
+    auto cube = new MeshObject("../static/bunny.obj", Vec3(0.03, -0.1, 0.5), metal_left_mat);
+    cube->mat = metal_left_mat;
+    scene->AddObject(std::unique_ptr<MeshObject>(cube));
 
     std::unique_ptr<PathTracer> app(new PathTracer(scene.get()));
 
