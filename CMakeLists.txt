@@ -69,8 +69,8 @@ add_executable(realtime_raytracer main.cpp
         src/triangle.hpp
         src/mesh.cpp
         src/mesh.hpp
-        src/mesh_object.cpp
-        src/mesh_object.hpp
+        src/mesh_tool.cpp
+        src/mesh_tool.hpp
 )
 
 target_link_libraries(${PROJECT_NAME} glfw assimp)

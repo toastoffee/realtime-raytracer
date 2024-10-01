@@ -25,8 +25,6 @@ public:
 
 public:
     Mesh(const std::vector<Vec3> &vertices, const std::vector<unsigned int> &indices);
-
-
 };
 
 

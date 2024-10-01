@@ -10,8 +10,8 @@
 
 
 
-#ifndef REALTIME_RAYTRACER_MESH_OBJECT_HPP
-#define REALTIME_RAYTRACER_MESH_OBJECT_HPP
+#ifndef REALTIME_RAYTRACER_MESH_TOOL_HPP
+#define REALTIME_RAYTRACER_MESH_TOOL_HPP
 
 #include "mesh.hpp"
 #include "object.hpp"
@@ -24,28 +24,22 @@
 #include <assimp/scene.h>
 
 #include "triangle.hpp"
+#include "scene.hpp"
 
-class MeshObject : public Object {
+class MeshTool {
 private:
-    Vec3 m_pos;     // object pos
-    std::vector<Mesh*> m_meshes;    // all meshes
-    std::vector<Triangle> m_triangles;
-
-private:
-    // load model with assimp and save it to m_meshes
-    void loadMeshes(const std::string &path);
 
     // process node recursively, repeat if there exists children nodes
-    void processNode(aiNode *node, const aiScene *scene);
+    static void processNode(aiNode *node, const aiScene *aScene, const Vec3 &pos, const std::shared_ptr<Material> &mat, std::shared_ptr<Scene> &scene);
 
     // transform aiMesh to mesh
     static Mesh* convertMesh(aiMesh *mesh, const aiScene *scene);
 
 public:
-    explicit MeshObject(const std::string &path, const Vec3 &pos, const std::shared_ptr<Material> &material);
 
-    bool CheckHit(const Ray &ray, HitPayload &payload, double minRange, double maxRange) override;
+    static void LoadTrianglesToScene(const std::string &path, const Vec3 &pos, const std::shared_ptr<Material> &mat,  std::shared_ptr<Scene> &scene);
+
 };
 
 
-#endif //REALTIME_RAYTRACER_MESH_OBJECT_HPP
+#endif //REALTIME_RAYTRACER_MESH_TOOL_HPP
