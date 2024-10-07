@@ -30,7 +30,7 @@ class MeshTool {
 private:
 
     // process node recursively, repeat if there exists children nodes
-    static void processNode(aiNode *node, const aiScene *aScene, const Vec3 &pos, const std::shared_ptr<Material> &mat, std::shared_ptr<Scene> &scene);
+    static void processNode(aiNode *node, const aiScene *aScene, const Vec3 &pos, const std::shared_ptr<Material> &mat,  std::shared_ptr<Scene> &scene);
 
     // transform aiMesh to mesh
     static Mesh* convertMesh(aiMesh *mesh, const aiScene *scene);

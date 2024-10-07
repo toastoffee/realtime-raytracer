@@ -22,9 +22,9 @@ void MeshTool::processNode(aiNode *node, const aiScene *aScene, const Vec3 &pos,
         auto mesh = convertMesh(aMesh, aScene);
 
         for (int j = 0; j < mesh->m_indices.size(); j += 3) {
-            auto a = pos + mesh->m_vertices[i];
-            auto b = pos + mesh->m_vertices[i+1];
-            auto c = pos + mesh->m_vertices[i+2];
+            auto a = pos + mesh->m_vertices[j];
+            auto b = pos + mesh->m_vertices[j+1];
+            auto c = pos + mesh->m_vertices[j+2];
 
             auto face = new Triangle(a, b, c);
             face->mat = mat;

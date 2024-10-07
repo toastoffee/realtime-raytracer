@@ -15,7 +15,7 @@
 PathTracer::PathTracer(Scene *scene) :
     m_scene(scene),
 //    m_cam(Vec3::zero(), 90.0f, 720, 1280, "../static/skybox/"),
-    m_cam(Vec3::zero(), 30.0f, 200, 200, "../static/skybox/"),
+    m_cam(Vec3::zero(), 30.0f, 64, 64, "../static/skybox/"),
     m_window(1600, 900),
     m_resolutionMaxX(2048), m_resolutionMaxY(2048) {
 
